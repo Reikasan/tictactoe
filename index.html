@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <!-- Add Fontawsome -->
+    <script src="https://kit.fontawesome.com/fbe614a2b2.js" crossorigin="anonymous"></script>
+    <title>TicTacToe</title>
+</head>
+<body>
+    <div class="container"> 
+        <h1 class="title">TicTacToe</h1>
+        <div class="screen--start">
+            <form class="start-form">
+                <div class="select select--opponent">
+                    <h2>Opponent?</h2>
+                    <div class="row">
+                        <button class="btn--square opponent-btn" data-opponent="manual"><i class="fa-solid fa-person"></i>Manual</button>
+                        <button class="btn--square opponent-btn" data-opponent="auto"><i class="fa-solid fa-computer"></i>Auto</button>
+                    </div>
+                </div>
+                <div class="select select--symbol hidden">
+                    <h2>Which Symbol?</h2>
+                    <div class="row">
+                        <button class="btn--square symbol-btn" data-symbol="x"><i class="fa-solid fa-xmark"></i></button>
+                        <button class="btn--square symbol-btn" data-symbol="o"><i class="fa-solid fa-o"></i></button>
+                    </div>
+                    <button class="back--opponent">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Select Opponent
+                    </button>
+                </div>
+                <h2 class="start-game hidden">Start Game</h2>
+            </form>
+        </div>
+        <div class="screen--game">
+            <div class="board">
+                <div class="board__cell" id="0"></div>
+                <div class="board__cell" id="1"></div>
+                <div class="board__cell" id="2"></div>
+                <div class="board__cell" id="3"></div>
+                <div class="board__cell" id="4"></div>
+                <div class="board__cell" id="5"></div>
+                <div class="board__cell" id="6"></div>
+                <div class="board__cell" id="7"></div>
+                <div class="board__cell" id="8"></div>
+            </div>
+            <button class="reset">Reset Game</button>
+        </div>
+    <script src="script.js"></script>
+</body>
+</html>
