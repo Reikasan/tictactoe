@@ -10,7 +10,26 @@ body {
 	box-sizing: border-box;
     background-color: #f7ede2;
     position: relative;
+    cursor: none;
+}
 
+.cursor {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 1200;
+}
+
+.cursor.isActive {
+    opacity: 1;
+    transition: opacity 0.1s;
+}
+.cursor i {
+    color: #84A59D;
+    font-size: 2rem;
+    text-shadow: 1px 1px 1px #f7ede250;
 }
 
 .container {
@@ -37,10 +56,14 @@ h2 {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* Button */
+button {
+    cursor: none;
+}
+
 .btn {
     display: inline-block;
     padding: 1rem 2rem;
@@ -53,7 +76,6 @@ h2 {
     background-color: #f6bd60;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s;
     background-color: #f6bd60;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
@@ -76,7 +98,6 @@ h2 {
     background-color: #f7ede2;
     color: #f6bd60;
     border: none;
-    cursor: pointer;
     transition: background-color 0.3s;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
     transition: border 0.1s ease, box-shadow 0.3s ease-in; 
@@ -228,7 +249,6 @@ h2 {
     align-items: center;
     font-size: 3rem;
     border: 1px solid #2f3e46;
-    cursor: pointer;
 }
 
 /* Symbol */
