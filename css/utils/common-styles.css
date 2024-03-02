@@ -1,0 +1,57 @@
+@import './animations.css';
+
+*, 
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+	box-sizing: border-box;
+    background-color: #f7ede2;
+    position: relative;
+    cursor: none;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #2f3e46;
+    padding: 50px 0;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 5rem;
+    font-family: "Source Code Pro", monospace;
+    font-weight: 700;
+    font-style: italic;
+}
+
+h2 {
+    font-size: 3rem;
+    font-family: "Source Code Pro", monospace;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.title {
+    position: absolute;
+    top: 50px;
+    z-index: 800;
+}
+
+.screen {
+    position: absolute;    
+}
+
+.move-left {
+    animation: moveLeft 1s forwards ease-in-out;
+}

@@ -1,0 +1,18 @@
+.cursor {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 1200;
+}
+
+.cursor.isActive.show {
+    opacity: 1;
+    transition: opacity 0.1s;
+}
+.cursor i {
+    color: #84A59D;
+    font-size: 2rem;
+    text-shadow: 1px 1px 1px #f7ede250;
+}

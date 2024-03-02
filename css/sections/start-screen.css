@@ -1,0 +1,73 @@
+@import '../utils/animations.css';
+
+/* Start Screen */
+.screen--start {
+    background-color: #f28482;
+    color: #f7ede2;
+    transform: translateY(25%);
+    width: 100vw;
+    height: 400px;
+    top: 15%;
+    left: 0%;
+    z-index: 900;
+    transition: all 0.5s;
+}
+
+.screen--start.expand {
+    height: 100vh;
+    top: -25%;
+}
+
+.screen--start.move-down {
+    animation: moveDown 1s forwards ease-in-out;
+    transform-origin: bottom;
+}
+
+.screen--start h2 {
+    text-align: center;
+}
+
+.screen--start h2.start-game {
+    line-height: 300px;
+    color: transparent;
+    font-size: 8rem;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 900;
+    -webkit-text-stroke: 3px #f7ede2;
+}
+
+.screen--start form {
+    max-width: 800px;
+    height: 300px;
+    margin: 50px auto;
+}
+
+.screen--start .fa-solid {
+    color: #f6bd60;
+    font-size: 5rem;
+    height: auto;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem auto;
+    width: 500px;
+}
+
+.back--opponent {
+    font-size: 1.2rem;
+    width: 500px;
+    margin: 0 auto;
+    background-color: transparent;
+    border: none;
+    color: #f7ede2;
+    display: block;
+}
+
+.screen--start .back--opponent i {
+    font-size: 1.2rem;
+    color: #f7ede2;
+    margin-top: 5px;
+}

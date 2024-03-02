@@ -1,0 +1,10 @@
+.fa-solid {
+    color: #2f3e46;
+    display: inline-block;
+    height: 2rem;
+    font-style: normal;
+}
+
+.fa-xmark {
+    transform: scale(1.1);
+}
