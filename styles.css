@@ -22,7 +22,7 @@ body {
     z-index: 1200;
 }
 
-.cursor.isActive {
+.cursor.isActive.show {
     opacity: 1;
     transition: opacity 0.1s;
 }

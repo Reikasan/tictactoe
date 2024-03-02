@@ -2,6 +2,7 @@ const cursor = document.querySelector('.cursor');
 const normalCursor = cursor.querySelector('.cursor--normal');
 const pointerCursor = cursor.querySelector('.cursor--pointer');
 const hoverEffectElements = document.querySelectorAll('.pointer');
+const body = document.querySelector('body');
 
 let msPos = {
     // mouse position
@@ -16,6 +17,15 @@ if (window.matchMedia("(pointer: fine)")) {
     document.addEventListener("mouseover", customCursorActivate);
 }
   
+// show cursor on mouseenter and hide on mouseleave
+document.addEventListener('mouseenter', () => {
+    cursor.classList.add('show');
+});
+
+document.addEventListener('mouseleave', () => {
+    cursor.classList.remove('show');
+});
+
  // custom cursor and mouse stalker activate
 function customCursorActivate() {
     cursor.classList.add("isActive");
@@ -46,7 +56,7 @@ function update() {
     requestAnimationFrame(update);
 }
   
-//   add event listener to each selected area
+//  add event listener to each selected area
 hoverEffectElements.forEach((element) => {
     element.addEventListener("mouseover", () => {
         toggleCursor(element);
