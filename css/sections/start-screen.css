@@ -1,9 +1,10 @@
 @import '../utils/animations.css';
+@import '../utils/variables.css';
 
 /* Start Screen */
 .screen--start {
-    background-color: #f28482;
-    color: #f7ede2;
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
     transform: translateY(25%);
     width: 100vw;
     height: 400px;
@@ -34,7 +35,7 @@
     text-transform: uppercase;
     font-style: italic;
     font-weight: 900;
-    -webkit-text-stroke: 3px #f7ede2;
+    -webkit-text-stroke: 3px var(--bg-color);
 }
 
 .screen--start form {
@@ -44,7 +45,7 @@
 }
 
 .screen--start .fa-solid {
-    color: #f6bd60;
+    color: var(--primary-color);
     font-size: 5rem;
     height: auto;
 }
@@ -62,12 +63,12 @@
     margin: 0 auto;
     background-color: transparent;
     border: none;
-    color: #f7ede2;
+    color: var(--bg-color);
     display: block;
 }
 
 .screen--start .back--opponent i {
     font-size: 1.2rem;
-    color: #f7ede2;
+    color: var(--bg-color);
     margin-top: 5px;
 }

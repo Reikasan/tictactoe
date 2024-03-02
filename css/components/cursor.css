@@ -1,3 +1,5 @@
+@import '../utils/variables.css';
+
 .cursor {
     pointer-events: none;
     position: fixed;
@@ -12,7 +14,7 @@
     transition: opacity 0.1s;
 }
 .cursor i {
-    color: #84A59D;
+    color: var(--smoky-green);
     font-size: 2rem;
-    text-shadow: 1px 1px 1px #f7ede250;
+    text-shadow: 1px 1px 1px var(--text-shadow-color);
 }

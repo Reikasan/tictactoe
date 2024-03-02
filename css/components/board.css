@@ -1,0 +1,17 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    aspect-ratio: 1;
+    width: 400px;
+    margin: 0 auto;
+    border: 1px solid #2f3e46;
+    background-color: #f9f7f4;
+}
+
+.board__cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    border: 1px solid #2f3e46;
+}

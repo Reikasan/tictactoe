@@ -1,0 +1,11 @@
+:root {
+    --main-color: #f6bd60;
+    --secondary-color: #f28482;
+    --light-color: #f7ede2;
+    --dark-text: #2f3e46;
+    --bg-color: #f7ede2;
+    --smoky-green: #84A59D;
+    --text-shadow-color: #f7ede250;
+
+    --heading-font: "Source Code Pro", monospace;
+}

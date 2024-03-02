@@ -1,5 +1,7 @@
+@import '../utils/variables.css';
+
 .fa-solid {
-    color: #2f3e46;
+    color: var(--dark-text);
     display: inline-block;
     height: 2rem;
     font-style: normal;

@@ -1,4 +1,5 @@
 @import './animations.css';
+@import './variables.css';
 
 *, 
 *::after,
@@ -10,7 +11,7 @@
 
 body {
 	box-sizing: border-box;
-    background-color: #f7ede2;
+    background-color: var(--bg-color);
     position: relative;
     cursor: none;
 }
@@ -18,21 +19,21 @@ body {
 .container {
     max-width: 800px;
     margin: 0 auto;
-    color: #2f3e46;
+    color: var(--dark-text);
     padding: 50px 0;
     height: 100vh;
 }
 
 h1 {
     font-size: 5rem;
-    font-family: "Source Code Pro", monospace;
+    font-family: var(--heading-font);
     font-weight: 700;
     font-style: italic;
 }
 
 h2 {
     font-size: 3rem;
-    font-family: "Source Code Pro", monospace;
+    font-family: var(--heading-font);
     font-weight: 700;
     font-style: italic;
     margin-bottom: 1rem;
