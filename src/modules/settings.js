@@ -6,21 +6,7 @@ const backToOpponentBtn = startScreen.querySelector('.back--opponent');
 const selectOpponentSection = startScreen.querySelector('.select--opponent');
 const selectSymbolSection = startScreen.querySelector('.select--symbol');
 const startGameText = startScreen.querySelector('.start-game');
-
-// Game Screen
 const gameScreen = document.querySelector('.screen--game');
-
-opponentBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => selectAndShowNextQuestion(e, 'opponent', btn));
-});
-symbolBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => selectAndShowNextQuestion(e, 'symbol', btn));
-});
-backToOpponentBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  selectSymbolSection.classList.add('hidden');
-  selectOpponentSection.classList.remove('hidden');
-});
 
 function selectAndShowNextQuestion(e, item, btn) {
     e.preventDefault();
@@ -64,3 +50,5 @@ function show(item) {
 function hide(item) {
     item.classList.add('hidden');
 }
+
+export {selectAndShowNextQuestion, opponentBtns, symbolBtns, backToOpponentBtn, selectSymbolSection, selectOpponentSection, startGameText, gameScreen, startScreen, transitionScreen, moveLeft, moveDown, coverScreen, show, hide}
