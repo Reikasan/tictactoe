@@ -19,8 +19,8 @@
         <i class="fa-solid fa-hand-pointer cursor--pointer hidden"></i>
     </div>
     <div class="container"> 
-        <h1 class="title hidden">TicTacToe</h1>
-        <div class="screen screen--start hidden">
+        <h1 class="title">TicTacToe</h1>
+        <div class="screen screen--start">
             <form class="start-form">
                 <div class="select select--opponent">
                     <h2>Opponent?</h2>
@@ -43,36 +43,37 @@
                 <h2 class="start-game hidden">Start Game</h2>
             </form>
         </div>
-        <div class="screen screen--game">
+        <div class="screen screen--game hidden">
             <div class="opponent">
-                <button class="btn--square opponent-btn manual pointer" data-opponent="manual"><i class="fa-solid fa-person"></i>Opponent</button>
-                <button class="btn--square opponent-btn auto pointer" data-opponent="auto"><i class="fa-solid fa-computer"></i>Opponent</button>
+                <button class="btn--square switch-opponent-btn reset pointer" ><i class="fa-solid"></i><span>Switch Opponent</span></button>
             </div>
             <div class="game-status">
-                <h2 class="game-status__text">Your Turn</h2>
+                <h2 class="game-status__text"></h2>
             </div>
-            <div class="symbols">
-                <div class="selected-symbol--you">
+            <div class="player-sign">
+                <div class="sign sign--user">
+                    <p>You</p>
                     <i class="fa-solid"></i>
-                    You
                 </div>
-                <div class="selected-symbol--opponent">
+                <div class="sign sign--opponent">
                     <i class="fa-solid"></i>
-                    Opponent
+                    <p>Opponent</p>
                 </div>
             </div>
             <div class="board">
-                <div class="board__cell pointer" id="0"></div>
-                <div class="board__cell pointer" id="1"></div>
-                <div class="board__cell pointer" id="2"></div>
-                <div class="board__cell pointer" id="3"></div>
-                <div class="board__cell pointer" id="4"></div>
-                <div class="board__cell pointer" id="5"></div>
-                <div class="board__cell pointer" id="6"></div>
-                <div class="board__cell pointer" id="7"></div>
-                <div class="board__cell pointer" id="8"></div>
+                <div class="board__cell pointer" data-index="0"><i class="fa-solid"></i></div>
+                <div class="board__cell pointer" data-index="1"><i class="fa-solid"></i></div>
+                <div class="board__cell pointer" data-index="2"><i class="fa-solid"></i></div>
+                <div class="board__cell pointer" data-index="3"><i class="fa-solid"></i></div>
+                <div class="board__cell pointer" data-index="4"><i class="fa-solid"></i></div>
+                <div class="board__cell pointer" data-index="5"><i class="fa-solid"></i></div>
+                <div class="board__cell pointer" data-index="6"><i class="fa-solid"></i></div>
+                <div class="board__cell pointer" data-index="7"><i class="fa-solid"></i></div>
+                <div class="board__cell pointer" data-index="8"><i class="fa-solid"></i></div>
             </div>
-            <button class="btn btn--reset pointer">Reset Game</button>
+            <div class="reset-btn-container">
+                <button class="btn reset pointer">Reset Game?</button>
+            </div>
         </div>
     <script type="module" src="./src/index.js"></script>
 </body>
