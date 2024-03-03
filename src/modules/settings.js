@@ -1,4 +1,4 @@
-import { hide, show, moveLeft, coverScreen, moveDown, addSelectedIcon, getOpponentSymbol } from './helpers.js';
+import { hide, show, moveLeft, coverScreen, moveDown, addSelectedIconToElement, getOpponentSymbol } from './helpers.js';
 
 // Start Screen
 export const startScreen = document.querySelector('.screen--start');
@@ -49,7 +49,7 @@ export function selectAndShowNextQuestion(e, item, btn) {
         hide(selectOpponentSection);
         show(selectSymbolSection);
 
-        addSelectedIcon(switchOpponentBtnIcon, opponent);
+        addSelectedIconToElement(switchOpponentBtnIcon, opponent);
     
     // Second question
     } else if(item === 'symbol') {
@@ -70,8 +70,8 @@ export function selectAndShowNextQuestion(e, item, btn) {
 function setIconForPlayerSigns(selectedUserSymbol) {
     opponentSymbol = getOpponentSymbol(selectedSymbol);
 
-    addSelectedIcon(userSymbolSignIcon, selectedSymbol);
-    addSelectedIcon(opponentSymbolSignIcon, opponentSymbol);
+    addSelectedIconToElement(userSymbolSignIcon, selectedSymbol);
+    addSelectedIconToElement(opponentSymbolSignIcon, opponentSymbol);
 }
 
 export function checkPlayer(turnCount) {

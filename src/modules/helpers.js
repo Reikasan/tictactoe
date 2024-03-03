@@ -21,7 +21,7 @@ function hide(item) {
     item.classList.add('hidden');
 }
 
-function addSelectedIcon(element, icon) {
+function addSelectedIconToElement(element, icon) {
     if(icon === 'x') {
         element.classList.add('fa-xmark');
     } else if(icon === 'o') {
@@ -37,5 +37,5 @@ function getOpponentSymbol(selectedSymbol) {
     return selectedSymbol === 'x' ? 'o' : 'x';
 }
 
-export {moveLeft, moveDown, coverScreen, show, hide, addSelectedIcon, getOpponentSymbol};
+export {moveLeft, moveDown, coverScreen, show, hide, addSelectedIconToElement, getOpponentSymbol};
 
