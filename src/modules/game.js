@@ -9,42 +9,62 @@ const winningCombos = [
     [0, 3, 6], [1, 4, 7], [2, 5, 8], 
     [0, 4, 8], [2, 4, 6]
 ];
+let winner = '';
+let winningComb = [];
 
 cells.forEach((cell) => {
-    const cellIconElement = cell.querySelector('i');
-    cell.addEventListener('click', () => {
-        console.log('turn count', settings.turnCount);
-        // User's turn
-        if(settings.turnCount % 2 === 0) {
-            if(!userPlay(cell.dataset.index, selectedSymbol, cellIconElement)) {
-                return;
-            }
-            
-        // Opponent's turn
-        } else {
-            if(!userPlay(cell.dataset.index, opponentSymbol, cellIconElement)) {
-                return;
-            }
-        }
-        console.log(gameBoard);
-    });
+    cell.addEventListener('click', () => playGame(cell));
 });
 
+function removeEventListenerFromCells() {
+    cells.forEach((cell) => {
+        cell.removeEventListener('click', playGame);
+    });
+}
+
+function playGame(cell) {
+    const cellIconElement = cell.querySelector('i');
+    if(settings.turnCount >= 9 || winner !== '') {
+        return;
+    }
+    
+    // User's turn
+    if(settings.turnCount % 2 === 0) {
+        if(!userPlay(cell.dataset.index, selectedSymbol, cellIconElement)) {
+            return;
+        }
+        
+    // Opponent's turn
+    } else {
+        if(!userPlay(cell.dataset.index, opponentSymbol, cellIconElement)) {
+            return;
+        }
+    }
+}
+
 function userPlay(cellIndex, symbol, cellIconElement) {
-    console.log('user play');
     if(!addMoveToBoard(cellIndex, symbol, cellIconElement)) {
         return false;
     }
 
+    if(settings.turnCount >= 5) {
+        if(checkWinner()) {
+            removeEventListenerFromCells();
+            winner = 'user';
+            showWinnerScreen(winner);
+            return;
+        }
+    }
+
     settings.turnCount += 1;
 
-    if(settings.turnCount >= 5) {
-        checkWinner();
+    if(settings.turnCount >= 9) {
+        return;
     }
+
     checkPlayer(settings.turnCount);
 
     if(opponent === 'auto') {
-        console.log(settings.turnCount, 'auto play');
         const result = setTimeout(autoPlay, 1000);
         if(!result) {
             return false;
@@ -55,20 +75,17 @@ function userPlay(cellIndex, symbol, cellIconElement) {
 
 function addMoveToBoard(cellIndex, symbol, cellIconElement) {
     if(isPlayerSelectedEmptyCell(cellIndex)) {
-        console.log(cellIndex, 'is empty');
         addPlayerMoveToBoardArray(cellIndex, symbol);
         addSelectedIconToElement(cellIconElement, symbol);
         hide(gameStatusError);
         return true;
     } else {
         show(gameStatusError);
-        console.log(cellIndex, 'is not empty' , symbol, 'cannot be placed there')
         return false;
     }
 }
 
 function isPlayerSelectedEmptyCell(cellIndex) {
-    console.log(gameBoard[cellIndex] === null);
     return gameBoard[cellIndex] === null;
 }
 
@@ -77,64 +94,64 @@ function addPlayerMoveToBoardArray(cellIndex, symbol) {
 }
 
 function checkWinner() {
-    winningCombos.forEach((combo) => {
+    winningComb = winningCombos.find((combo) => {
         const [a, b, c] = combo;
         if(gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
-            console.log('winner');
+            return true;
         }
     });
+    return winningComb !== undefined ? true : false;
 }
 
 function autoPlay() {
-    console.log(settings.turnCount, 'in auto play function');
+    if(winner !== '') {
+        return;
+    }
 
     let cellIndex = computeNextMoveIndex(settings.turnCount);
-
-console.log('auto play cell is ', cellIndex);
     const cellIconElement = cells[cellIndex].querySelector('i');
     addMoveToBoard(cellIndex, opponentSymbol, cellIconElement);
-    settings.turnCount += 1;
-
+    
     if(settings.turnCount >= 5) {
-        checkWinner();
+        if(checkWinner()) {
+            winner = 'opponent';
+            removeEventListenerFromCells();
+            showWinnerScreen(winner);
+            return;
+        }
     }
+
+    settings.turnCount += 1;
     checkPlayer(settings.turnCount);
     return true;
 }
 
 function isNextMoveDefence() {
     const no = Math.floor(Math.random() * 2);
-    console.log('no', no);
     return no === 0 ? true : false;
-    // if(Math.floor(Math.random() * 1) === 0) {
-//         return true;
-//     }
-//     return false;
 }
 
 function getRandomEmptyCellIndex() {
     let emptyCells = gameBoard.map((value, index) => value === null ? index : -1)
                             .filter(index => index  !== -1);
-    console.log('empty cells', emptyCells);
     let randomIndex = Math.floor(Math.random() * emptyCells.length);
     return emptyCells[randomIndex];
 }
 
 function computeNextMoveIndex(turnCount) {
+    // First turn is random
     if(turnCount === 1) {
         return getRandomEmptyCellIndex();
+    
+    // From second turn, randomly choose between defence or attack
     } else {
     let index = null;
         if(isNextMoveDefence()) {
-            console.log('defence move');
             index = indexForDefenceMove();
-    console.log('defence move index', index);
 
             if(index === null) {
-                console.log('no defence move');
                 return indexForAttackMove() !== null ? indexForAttackMove() : getRandomEmptyCellIndex();
             }
-            console.log('index', index);
             return index;
 
         } else {
@@ -149,15 +166,11 @@ function computeNextMoveIndex(turnCount) {
 }
 
 function indexForDefenceMove() {
-    const indexNo = checkForWinningMove(selectedSymbol);
-    console.log('index for defence move', indexNo);
-    return indexNo;
+    return checkForWinningMove(selectedSymbol);
 }
 
 function indexForAttackMove() {
-    const indexNo = checkForWinningMove(opponentSymbol);
-    console.log('index for attack move', indexNo);
-    return indexNo;
+    return checkForWinningMove(opponentSymbol);
 }
 
 function checkForWinningMove(symbol) {
@@ -166,17 +179,14 @@ function checkForWinningMove(symbol) {
         const [a, b, c] = combo;
         if(gameBoard[a] === symbol) {
             if(gameBoard[a] === gameBoard[b] && gameBoard[c] === null) {
-                console.log('winning move is c');
                 return key = 2;
             }
             if(gameBoard[a] === gameBoard[c] && gameBoard[b] === null) {
-                console.log('winning move is b');
                 
                 return key = 1;
             }
         } else if(gameBoard[b] === symbol) {
             if(gameBoard[b] === gameBoard[c] && gameBoard[a] === null) {
-                console.log('winning move is a');
                 return key = 0;
             }
         }
@@ -186,4 +196,14 @@ function checkForWinningMove(symbol) {
         return null;
     }
     return index[key];
+}
+
+function showWinnerScreen(winner) {
+    winningComb.forEach((cellIndex, index) => {
+        setTimeout(() => changeBoardCellColor(cellIndex), index * 500);
+    });
+}
+
+function changeBoardCellColor(cellIndex) {
+    cells[cellIndex].classList.add('board__cell--winning');
 }
