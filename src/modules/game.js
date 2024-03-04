@@ -1,5 +1,5 @@
 import {hide, show, moveLeft, coverScreen, moveDown, addSelectedIconToElement} from './helpers.js';
-import { cells, games, gameStatusError, settings, winningCombos } from './variables.js';
+import { cells, games, gameStatusError, settings, winningCombos, resultScreen, resultMessage, resultText } from './variables.js';
 import { checkPlayer } from './settings.js';
 
 // Event listener
@@ -41,9 +41,9 @@ function userPlay(cellIndex, symbol, cellIconElement) {
 
     if(games.turnCount >= 5) {
         if(checkWinner()) {
+            declareWinner();
             removeEventListenerFromCells();
-            games.winner = 'user';
-            showWinnerScreen(games.winner);
+            showResult(games.winner);
             return;
         }
     }
@@ -51,7 +51,9 @@ function userPlay(cellIndex, symbol, cellIconElement) {
     games.turnCount += 1;
 
     if(games.turnCount >= 9) {
-        return;
+        games.winner = 'draw';
+        showResult(games.winner);
+        return false
     }
 
     checkPlayer(games.turnCount);
@@ -90,10 +92,15 @@ function checkWinner() {
     games.winningComb = winningCombos.find((combo) => {
         const [a, b, c] = combo;
         if(games.gameBoard[a] && games.gameBoard[a] === games.gameBoard[b] && games.gameBoard[a] === games.gameBoard[c]) {
+            
             return true;
         }
     });
     return games.winningComb !== undefined ? true : false;
+}
+
+function declareWinner() {
+    games.winner = games.turnCount % 2 === 0 ? 'user' : 'opponent';
 }
 
 function autoPlay() {
@@ -103,13 +110,15 @@ function autoPlay() {
 
     let cellIndex = computeNextMoveIndex(games.turnCount);
     const cellIconElement = cells[cellIndex].querySelector('i');
+
     addMoveToBoard(cellIndex, settings.opponentSymbol, cellIconElement);
-    
+    saveGameHistory();
+
     if(games.turnCount >= 5) {
         if(checkWinner()) {
-            games.winner = 'opponent';
+            declareWinner();
             removeEventListenerFromCells();
-            showWinnerScreen(games.winner);
+            showResult(games.winner);
             return;
         }
     }
@@ -190,7 +199,25 @@ function checkForWinningMove(symbol) {
     return index[key];
 }
 
-function showWinnerScreen(winner) {
+function showResult(winner) {
+    if(winner === 'user') {
+        resultMessage.textContent = 'congratulations';
+        resultText.textContent = 'You win!';
+    } else if(winner === 'opponent') {
+        resultMessage.textContent = 'better luck next time';
+        resultText.textContent = 'You lose!';
+    } else if(winner === 'draw') {
+        gameStatusText.textContent = 'Draw!';
+    }
+
+    if(winner !== 'draw') {
+        highlightWinningCombination();
+    }
+    showResultScreen();
+    
+}
+
+function highlightWinningCombination() {
     games.winningComb.forEach((cellIndex, index) => {
         setTimeout(() => changeBoardCellColor(cellIndex), index * 500);
     });
@@ -198,4 +225,9 @@ function showWinnerScreen(winner) {
 
 function changeBoardCellColor(cellIndex) {
     cells[cellIndex].classList.add('board__cell--winning');
+}
+
+function showResultScreen() {
+    setTimeout(() =>show(resultScreen), 2500);
+    setTimeout(() => coverScreen(resultScreen), 2500);
 }

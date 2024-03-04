@@ -35,7 +35,7 @@
                         <button class="btn--square symbol-btn pointer" data-symbol="x"><i class="fa-solid fa-xmark"></i></button>
                         <button class="btn--square symbol-btn pointer" data-symbol="o"><i class="fa-solid fa-o"></i></button>
                     </div>
-                    <button class="back--opponent pointer">
+                    <button class="back-btn--opponent pointer">
                         <i class="fa-solid fa-arrow-left"></i>
                         Select Opponent
                     </button>
@@ -74,7 +74,7 @@
             </div>
             <div class="screen__footer">
                 <div class="reset-btn-container">
-                    <button class="btn back-btn pointer">
+                    <button class="btn back-btn--game pointer">
                         <i class="fa-solid fa-rotate-left"></i>
                     </button>
                     <button class="btn btn-reset pointer">Reset?</button>
@@ -82,8 +82,15 @@
             </div>
         </div>
         <div class="screen screen--result hidden">
-            <h2 class="end-game__text"></h2>
+            <div class="result">
+                <p class="result__message"></p>
+                <h1 class="result__text"></h1>
+            </div>
             <button class="btn reset pointer">Play Again?</button>
+            <p>or</p>
+            <button class="back-btn--opponent pointer">
+                Change Opponent?
+            </button>
         </div>
     <script type="module" src="./src/index.js"></script>
 </body>

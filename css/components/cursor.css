@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     opacity: 0;
-    z-index: 1200;
+    z-index: 1500;
 }
 
 .cursor.isActive.show {

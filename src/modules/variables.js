@@ -11,7 +11,7 @@ export let msPos = {
 export const startScreen = document.querySelector('.screen--start');
 export const opponentBtns = startScreen.querySelectorAll('.opponent-btn');
 export const symbolBtns = startScreen.querySelectorAll('.symbol-btn');
-export const backToOpponentBtn = startScreen.querySelector('.back--opponent');
+export const backToOpponentBtn = startScreen.querySelector('.back-btn--opponent');
 export const selectOpponentSection = startScreen.querySelector('.select--opponent');
 export const selectSymbolSection = startScreen.querySelector('.select--symbol');
 export const startGameText = startScreen.querySelector('.start-game');
@@ -47,6 +47,9 @@ export const winningCombos = [
 
 // Result
 export const resultScreen = document.querySelector('.screen--result');
+export const resultText = resultScreen.querySelector('.result__text');
+export const resultMessage = resultScreen.querySelector('.result__message');
+
 
 // Helper
 export const title = document.querySelector('.title');

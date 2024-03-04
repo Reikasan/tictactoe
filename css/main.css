@@ -7,6 +7,7 @@
 /* Sections */
 @import './sections/start-screen.css';
 @import './sections/game-screen.css';
+@import './sections/result-screen.css';
 
 /* Utilities */
 @import './utils/animations.css';
