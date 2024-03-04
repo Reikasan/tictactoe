@@ -1,27 +1,5 @@
 import { hide, show, moveLeft, coverScreen, moveDown, addSelectedIconToElement, getOpponentSymbol } from './helpers.js';
-
-// Start Screen
-export const startScreen = document.querySelector('.screen--start');
-export const opponentBtns = startScreen.querySelectorAll('.opponent-btn');
-export const symbolBtns = startScreen.querySelectorAll('.symbol-btn');
-export const backToOpponentBtn = startScreen.querySelector('.back--opponent');
-export const selectOpponentSection = startScreen.querySelector('.select--opponent');
-export const selectSymbolSection = startScreen.querySelector('.select--symbol');
-const startGameText = startScreen.querySelector('.start-game');
-export const gameScreen = document.querySelector('.screen--game');
-export let opponent = 'auto';
-export let selectedSymbol = 'x';
-export let opponentSymbol = 'o';
-export const userSymbolSign = gameScreen.querySelector('.sign--user');
-const userSymbolSignIcon = userSymbolSign.querySelector('i');
-export const opponentSymbolSign = gameScreen.querySelector('.sign--opponent');
-const opponentSymbolSignIcon = opponentSymbolSign.querySelector('i');
-export const switchOpponentBtn = gameScreen.querySelector('.switch-opponent-btn');
-const switchOpponentBtnIcon = switchOpponentBtn.querySelector('i');
-const gameStatusText = gameScreen.querySelector('.game-status__text');
-export let settings = {
-    turnCount: 0
-};
+import { settings, userSymbolSign, userSymbolSignIcon, opponentSymbolSign, opponentSymbolSignIcon, gameStatusText, startScreen, gameScreen, switchOpponentBtnIcon, startGameText, backToOpponentBtn, selectOpponentSection, selectSymbolSection, opponentBtns, symbolBtns, games } from './variables.js';
 
 // Event listeners
 opponentBtns.forEach(btn => {
@@ -38,22 +16,20 @@ backToOpponentBtn.addEventListener('click', (e) => {
     selectOpponentSection.classList.remove('hidden');
 });
 
-// export function selectAndShowNextQuestion(item, btn) {
-export function selectAndShowNextQuestion(e, item, btn) {
+function selectAndShowNextQuestion(e, item, btn) {
     e.preventDefault();
     
     // First question
     if(item === 'opponent') {
-        opponent = btn.dataset.opponent;
-        
+        settings.opponent = btn.dataset.opponent;
         hide(selectOpponentSection);
         show(selectSymbolSection);
 
-        addSelectedIconToElement(switchOpponentBtnIcon, opponent);
+        addSelectedIconToElement(switchOpponentBtnIcon, settings.opponent);
     
     // Second question
     } else if(item === 'symbol') {
-        selectedSymbol = btn.dataset.symbol;
+        settings.selectedSymbol = btn.dataset.symbol;
         
         // Execute "start game" text animation
         hide(selectSymbolSection);
@@ -62,16 +38,16 @@ export function selectAndShowNextQuestion(e, item, btn) {
         // Add selected icon to game screen
         setIconForPlayerSigns();
 
-        checkPlayer(settings.turnCount);   
+        checkPlayer(games.turnCount);   
         transitionScreen(); 
     } 
 }
 
-function setIconForPlayerSigns(selectedUserSymbol) {
-    opponentSymbol = getOpponentSymbol(selectedSymbol);
+function setIconForPlayerSigns() {
+    settings.opponentSymbol = getOpponentSymbol(settings.selectedSymbol);
 
-    addSelectedIconToElement(userSymbolSignIcon, selectedSymbol);
-    addSelectedIconToElement(opponentSymbolSignIcon, opponentSymbol);
+    addSelectedIconToElement(userSymbolSignIcon, settings.selectedSymbol);
+    addSelectedIconToElement(opponentSymbolSignIcon, settings.opponentSymbol);
 }
 
 export function checkPlayer(turnCount) {

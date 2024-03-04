@@ -1,8 +1,4 @@
-const cursor = document.querySelector('.cursor');
-const normalCursor = cursor.querySelector('.cursor--normal');
-const pointerCursor = cursor.querySelector('.cursor--pointer');
-const hoverEffectElements = document.querySelectorAll('.pointer');
-const body = document.querySelector('body');
+import { cursor, normalCursor, pointerCursor, hoverEffectElements } from './variables.js';
 
 let msPos = {
     // mouse position

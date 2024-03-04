@@ -1,4 +1,4 @@
-const title = document.querySelector('.title');
+import { title } from './variables.js';
 
 function moveLeft(item) {
     item.classList.add('move-left');
