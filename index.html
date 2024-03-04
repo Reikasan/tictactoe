@@ -20,6 +20,7 @@
     </div>
     <div class="container"> 
         <h1 class="title">TicTacToe</h1>
+        <!-- Start page / Settings -->
         <div class="screen screen--start">
             <form class="start-form">
                 <div class="select select--opponent">
@@ -43,6 +44,7 @@
                 <h2 class="start-game hidden">Start Game</h2>
             </form>
         </div>
+        <!-- Game Page -->
         <div class="screen screen--game hidden">
             <div class="game-status">
                 <h2 class="game-status__text"></h2>
@@ -60,7 +62,9 @@
                 <div class="board__cell pointer" data-index="8"><i class="fa-solid"></i></div>
             </div>
             <div class="opponent">
-                <button class="btn--square switch-opponent-btn reset pointer" ><i class="fa-solid"></i><span>Switch Opponent</span></button>
+                <button class="btn--square switch-opponent-btn reset-btn--all pointer" >
+                    <i class="fa-solid"></i><span>Switch Opponent</span>
+                </button>
             </div>
             <div class="player-sign">
                 <div class="sign sign--user">
@@ -74,24 +78,26 @@
             </div>
             <div class="screen__footer">
                 <div class="reset-btn-container">
-                    <button class="btn back-btn--game pointer">
+                    <button class="btn back-btn--game pointer disabled">
                         <i class="fa-solid fa-rotate-left"></i>
                     </button>
-                    <button class="btn btn-reset pointer">Reset?</button>
+                    <button class="btn reset-btn--game pointer">Reset?</button>
                 </div>
             </div>
         </div>
+        <!-- Result Page -->
         <div class="screen screen--result hidden">
             <div class="result">
                 <p class="result__message"></p>
                 <h1 class="result__text"></h1>
             </div>
-            <button class="btn reset pointer">Play Again?</button>
+            <button class="btn reset-btn--game pointer">Play Again?</button>
             <p>or</p>
-            <button class="back-btn--opponent pointer">
+            <button class="back-btn--opponent reset-btn--all pointer">
                 Change Opponent?
             </button>
         </div>
+    </div>
     <script type="module" src="./src/index.js"></script>
 </body>
 </html>

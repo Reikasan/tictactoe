@@ -37,7 +37,7 @@ resultScreen.addEventListener('mouseover', () => {
 });
 
 resultScreen.addEventListener('mouseout', () => {
-    changeCursorColor('pink');
+    removeCursorColor('pink');
 });
 
 

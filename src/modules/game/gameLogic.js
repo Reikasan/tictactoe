@@ -1,8 +1,8 @@
 import { show } from './../helpers.js';
 import { cells, games, gameStatusError, settings, winningCombos, backStepBtn } from './../variables.js';
 import { checkPlayer } from './../settings.js';
-import { removeDisabled, showSelectedIconOnCell, showResult } from './gameUI.js';
-import { saveGameHistory, addPlayerMoveToBoardArray, declareWinner } from './gameState.js';
+import { removeDisabled, showSelectedIconOnCell, showResult, showStartScreen, showGameScreen, renderGameBoard } from './gameUI.js';
+import { saveGameHistory, addPlayerMoveToBoardArray, declareWinner, resetAllData, resetGameData } from './gameState.js';
 
 export function playGame(cell) {
     const cellIconElement = cell.querySelector('i');
@@ -28,7 +28,7 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
     if(!addMoveToBoard(cellIndex, symbol, cellIconElement)) {
         return false;
     }
-    saveGameHistory();
+    saveGameHistory(cellIndex, symbol);
     if(games.turnCount === 0) {
         removeDisabled(backStepBtn);
     }
@@ -85,7 +85,7 @@ async function autoPlay() {
     const cellIconElement = cells[cellIndex].querySelector('i');
 
     addMoveToBoard(cellIndex, settings.opponentSymbol, cellIconElement);
-    saveGameHistory();
+    saveGameHistory(cellIndex, settings.opponentSymbol);
 
     if(games.turnCount >= 4) {
         if(await checkWinner()) {
@@ -188,4 +188,18 @@ function removeEventListenerFromCells() {
     cells.forEach((cell) => {
         cell.removeEventListener('click', playGame);
     });
+}
+
+export function resetAll() {
+    resetAllData();
+    renderGameBoard();
+    showStartScreen();
+}
+
+export function restart() {
+    console.log('clicked restart');
+    resetGameData();
+    renderGameBoard();
+    showGameScreen();
+    console.log(games);
 }

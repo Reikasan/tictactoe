@@ -51,6 +51,9 @@ export const resultScreen = document.querySelector('.screen--result');
 export const resultText = resultScreen.querySelector('.result__text');
 export const resultMessage = resultScreen.querySelector('.result__message');
 
+// Buttons
+export const allResetBtns = document.querySelectorAll('.reset-btn--all');
+export const gameResetBtns = document.querySelectorAll('.reset-btn--game');
 
 // Helper
 export const title = document.querySelector('.title');
