@@ -1,7 +1,7 @@
 import { show } from './../helpers.js';
-import { cells, games, gameStatusError, settings, winningCombos, backStepBtn } from './../variables.js';
+import { cells, games, gameStatusError, switchOpponentBtnIcon, settings, winningCombos, stepBackBtn } from './../variables.js';
 import { checkPlayer } from './../settings.js';
-import { removeDisabled, showSelectedIconOnCell, showResult, showStartScreen, showGameScreen, renderGameBoard } from './gameUI.js';
+import { addSelectedIconToElement, removeDisabled, showSelectedIconOnCell, showResult, showStartScreen, showGameScreen, renderGameBoard } from './gameUI.js';
 import { saveGameHistory, addPlayerMoveToBoardArray, declareWinner, resetAllData, resetGameData } from './gameState.js';
 
 export function playGame(cell) {
@@ -30,7 +30,7 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
     }
     saveGameHistory(cellIndex, symbol);
     if(games.turnCount === 0) {
-        removeDisabled(backStepBtn);
+        removeDisabled(stepBackBtn);
     }
 
     if(games.turnCount >= 4) {
@@ -190,6 +190,22 @@ function removeEventListenerFromCells() {
     });
 }
 
+// export function stepBack() {
+//     console.log('clicked back-btn');
+//     games.gameBoard = games.history[games.steps - 1];
+//     renderGameBoard();
+//     console.log(games.gameBoard);
+// }
+
+export function switchOpponent() {
+    settings.opponent = settings.opponent === 'auto' ? 'manual' : 'auto';
+    addSelectedIconToElement(switchOpponentBtnIcon, settings.opponent);
+
+    if(settings.opponent === 'auto' && games.turnCount % 2 !== 0) {
+        autoPlay();
+    }
+}
+
 export function resetAll() {
     resetAllData();
     renderGameBoard();
@@ -197,9 +213,7 @@ export function resetAll() {
 }
 
 export function restart() {
-    console.log('clicked restart');
     resetGameData();
     renderGameBoard();
     showGameScreen();
-    console.log(games);
 }

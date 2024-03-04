@@ -1,5 +1,6 @@
+import { checkPlayer } from '../settings.js';
 import { hide, show, coverScreen } from './../helpers.js';
-import { startScreen, gameScreen, resultScreen, title, resultMessage, resultText, cells, games, gameStatusError, iconX, iconO, iconPerson, iconComputer, startGameText } from './../variables.js';
+import { startScreen, gameScreen, resultScreen, title, selectOpponentSection, resultMessage, resultText, cells, games, gameStatusError, iconX, iconO, iconPerson, iconComputer, startGameText } from './../variables.js';
 
 export function addSelectedIconToElement(element, icon) {
     if(icon === 'x') {
@@ -82,6 +83,7 @@ export function showStartScreen() {
 }
 
 export function showGameScreen() {
+    checkPlayer(games.turnCount);
     show(gameScreen);
     hide(startScreen);
     hide(title);
@@ -95,6 +97,7 @@ export function renderGameBoard() {
         const cellIconElement = cell.querySelector('i');
         cell.classList.remove('board__cell--winning');
         cellIconElement.classList.remove(iconX, iconO);
-        console.log(games.gameBoard[i]);
+
+        console.log(games.gameBoard);
     }
 }
