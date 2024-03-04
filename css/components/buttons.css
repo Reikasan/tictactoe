@@ -52,14 +52,30 @@ button {
     transform: translateY(2px);
 }
 
-/* Game Screen */
-.back-btn {
+.back-btn--opponent {
+    font-size: 1.2rem;
+    width: 500px;
+    margin: 0 auto;
+    background-color: transparent;
+    border: none;
+    color: var(--bg-color);
+    display: block;
+    text-decoration: underline;
+}
+
+.back-btn--opponent i {
+    font-size: 1.2rem;
+    color: var(--bg-color);
+    margin-top: 5px;
+}
+
+.back-btn--game {
     width: 67px;
     height: 67px;
     padding: 0 1rem;
 }
 
-.back-btn i {
+.back-btn--game i {
     color: var(--main-color);
     font-size: 2rem;
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);;

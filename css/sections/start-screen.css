@@ -56,19 +56,3 @@
     margin: 2rem auto;
     width: 500px;
 }
-
-.back--opponent {
-    font-size: 1.2rem;
-    width: 500px;
-    margin: 0 auto;
-    background-color: transparent;
-    border: none;
-    color: var(--bg-color);
-    display: block;
-}
-
-.screen--start .back--opponent i {
-    font-size: 1.2rem;
-    color: var(--bg-color);
-    margin-top: 5px;
-}
