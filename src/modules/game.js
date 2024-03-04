@@ -12,10 +12,12 @@ const winningCombos = [
 let winner = '';
 let winningComb = [];
 
+// Event listener
 cells.forEach((cell) => {
     cell.addEventListener('click', () => playGame(cell));
 });
 
+// Romove event listener after game ends
 function removeEventListenerFromCells() {
     cells.forEach((cell) => {
         cell.removeEventListener('click', playGame);
@@ -64,6 +66,7 @@ function userPlay(cellIndex, symbol, cellIconElement) {
 
     checkPlayer(settings.turnCount);
 
+    // If opponent is auto, call autoPlay function
     if(opponent === 'auto') {
         const result = setTimeout(autoPlay, 1000);
         if(!result) {
