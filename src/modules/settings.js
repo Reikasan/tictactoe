@@ -1,22 +1,8 @@
-import { hide, show, moveLeft, coverScreen, moveDown, addSelectedIconToElement, getOpponentSymbol } from './helpers.js';
+import { hide, show, moveLeft, coverScreen, moveDown, getOpponentSymbol } from './helpers.js';
 import { settings, userSymbolSign, userSymbolSignIcon, opponentSymbolSign, opponentSymbolSignIcon, gameStatusText, startScreen, gameScreen, switchOpponentBtnIcon, startGameText, backToOpponentBtn, selectOpponentSection, selectSymbolSection, opponentBtns, symbolBtns, games } from './variables.js';
+import { addSelectedIconToElement } from './game/gameUI.js';
 
-// Event listeners
-opponentBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => selectAndShowNextQuestion(e, 'opponent', btn));
-});
-
-symbolBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => selectAndShowNextQuestion(e, 'symbol', btn));
-});
-
-backToOpponentBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    selectSymbolSection.classList.add('hidden');
-    selectOpponentSection.classList.remove('hidden');
-});
-
-function selectAndShowNextQuestion(e, item, btn) {
+export function selectAndShowNextQuestion(e, item, btn) {
     e.preventDefault();
     
     // First question
