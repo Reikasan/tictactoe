@@ -1,5 +1,5 @@
-import {hide, show, addSelectedIconToElement} from './helpers.js';
-import { cells, games, gameStatusError, settings, winningCombos } from './variables.js';
+import {hide, show, addSelectedIconToElement, removeDisabled} from './helpers.js';
+import { cells, games, gameStatusError, settings, winningCombos, backStepBtn } from './variables.js';
 import { checkPlayer } from './settings.js';
 import { showResult } from './result.js';
 
@@ -35,13 +35,17 @@ function playGame(cell) {
     }
 }
 
-function userPlay(cellIndex, symbol, cellIconElement) {
+async function userPlay(cellIndex, symbol, cellIconElement) {
     if(!addMoveToBoard(cellIndex, symbol, cellIconElement)) {
         return false;
     }
+    saveGameHistory();
+    if(games.turnCount === 0) {
+        removeDisabled(backStepBtn);
+    }
 
     if(games.turnCount >= 5) {
-        if(checkWinner()) {
+        if(await checkWinner()) {
             declareWinner();
             removeEventListenerFromCells();
             showResult(games.winner);
@@ -49,18 +53,17 @@ function userPlay(cellIndex, symbol, cellIconElement) {
         }
     }
 
-    games.turnCount += 1;
-
-    if(games.turnCount >= 9) {
+    if(games.turnCount >= 8) {
         games.winner = 'draw';
         showResult(games.winner);
-        return false
+        return false;
     }
 
+    games.turnCount += 1;
     checkPlayer(games.turnCount);
 
     // If opponent is auto, call autoPlay function
-    if(settings.opponent === 'auto') {
+    if(settings.opponent === 'auto' ) {
         const result = setTimeout(autoPlay, 1000);
         if(!result) {
             return false;
@@ -104,7 +107,7 @@ function declareWinner() {
     games.winner = games.turnCount % 2 === 0 ? 'user' : 'opponent';
 }
 
-function autoPlay() {
+async function autoPlay() {
     if(games.winner !== '') {
         return;
     }
@@ -113,10 +116,10 @@ function autoPlay() {
     const cellIconElement = cells[cellIndex].querySelector('i');
 
     addMoveToBoard(cellIndex, settings.opponentSymbol, cellIconElement);
-    // saveGameHistory();
+    saveGameHistory();
 
     if(games.turnCount >= 5) {
-        if(checkWinner()) {
+        if(await checkWinner()) {
             declareWinner();
             removeEventListenerFromCells();
             showResult(games.winner);
@@ -198,4 +201,10 @@ function checkForWinningMove(symbol) {
         return null;
     }
     return index[key];
+}
+
+function saveGameHistory() {
+    let copy = JSON.parse(JSON.stringify(games.gameBoard));
+    games.history.push(copy);
+    console.log(games.history);
 }
