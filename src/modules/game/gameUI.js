@@ -1,5 +1,14 @@
-import { show, coverScreen } from './helpers.js';
-import { resultScreen, resultMessage, resultText, cells, games } from './variables.js';
+import { hide, show, coverScreen, addSelectedIconToElement } from './../helpers.js';
+import { resultScreen, resultMessage, resultText, cells, games, gameStatusError } from './../variables.js';
+
+export function showSelectedIconOnCell(cellIconElement, symbol) {
+    addSelectedIconToElement(cellIconElement, symbol);
+    hide(gameStatusError);
+}
+
+export function removeDisabled(element) {
+    element.classList.remove('disabled');
+}
 
 export function showResult(winner) {
     if(winner === 'user') {
@@ -9,7 +18,7 @@ export function showResult(winner) {
         resultMessage.textContent = 'better luck next time';
         resultText.textContent = 'You lose!';
     } else if(winner === 'draw') {
-        gameStatusText.textContent = 'Draw!';
+        resultText.textContent = 'Draw!';
     }
 
     if(winner !== 'draw') {
@@ -33,3 +42,5 @@ function showResultScreen() {
     setTimeout(() =>show(resultScreen), 2500);
     setTimeout(() => coverScreen(resultScreen), 2500);
 }
+
+
