@@ -1,13 +1,6 @@
-import { cursor, normalCursor, pointerCursor, hoverEffectElements } from './variables.js';
+import { cursor, normalCursor, pointerCursor, hoverEffectElements, resultScreen, msPos } from './variables.js';
 
-let msPos = {
-    // mouse position
-    mouse: {
-      x: document.documentElement.clientWidth / 2,
-      y: document.documentElement.clientHeight / 2
-    }
-};
-  
+/* EVENT LISTENERS */
 // mouse stalker activate for non-touch devices
 if (window.matchMedia("(pointer: fine)")) {
     document.addEventListener("mouseover", customCursorActivate);
@@ -22,7 +15,33 @@ document.addEventListener('mouseleave', () => {
     cursor.classList.remove('show');
 });
 
- // custom cursor and mouse stalker activate
+//  change cursor to pointer on hover
+hoverEffectElements.forEach((element) => {
+    element.addEventListener("mouseover", () => {
+        toggleCursor(element);
+    });
+    element.addEventListener("mouseout", () => {
+        toggleCursor(element);
+    });
+    element.addEventListener("mousedown", () => {
+        changeCursorColor('dark');
+    });
+    element.addEventListener("mouseup", () => {
+        removeCursorColor('dark');
+    });
+}); 
+
+// change cursor color by entering result screen
+resultScreen.addEventListener('mouseover', () => {
+    changeCursorColor('pink');
+});
+
+resultScreen.addEventListener('mouseout', () => {
+    changeCursorColor('pink');
+});
+
+
+ // activate custom cursor 
 function customCursorActivate() {
     cursor.classList.add("isActive");
   
@@ -35,15 +54,15 @@ function customCursorActivate() {
  }
   
 function mousemove(e) {
-    msPos.mouse.x = e.clientX;
-    msPos.mouse.y = e.clientY;
+    msPos.x = e.clientX;
+    msPos.y = e.clientY;
 }
   
   // update function
 function update() {
     // round to 0.1
-    const mouseX = Math.round(msPos.mouse.x);
-    const mouseY = Math.round(msPos.mouse.y);
+    const mouseX = Math.round(msPos.x);
+    const mouseY = Math.round(msPos.y);
 
     // update mouse position
     cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(1)`;
@@ -52,22 +71,6 @@ function update() {
     requestAnimationFrame(update);
 }
   
-//  add event listener to each selected area
-hoverEffectElements.forEach((element) => {
-    element.addEventListener("mouseover", () => {
-        toggleCursor(element);
-    });
-    element.addEventListener("mouseout", () => {
-        toggleCursor(element);
-    });
-    element.addEventListener("mousedown", () => {
-        changeCursorColor(element);
-    });
-    element.addEventListener("mouseup", () => {
-        removeCursorColor(element);
-    });
-}); 
-
 // Toggle cursor
 function toggleCursor(hoveredElement) {
     normalCursor.classList.toggle('hidden');
@@ -75,10 +78,10 @@ function toggleCursor(hoveredElement) {
 }
 
 // Change cursor color
-function changeCursorColor(hoveredElement) {
-    pointerCursor.style.color = '#578b7e';
+function changeCursorColor(color) {
+    cursor.classList.add(color);
 }
 
-function removeCursorColor(hoveredElement) {
-    pointerCursor.style.color = '#84A59D';
+function removeCursorColor(color) {
+    cursor.classList.remove(color);
 }

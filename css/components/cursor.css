@@ -18,3 +18,11 @@
     font-size: 2rem;
     text-shadow: 1px 1px 1px var(--text-shadow-color);
 }
+
+.cursor.dark i {
+    color: var(--smoky-green-dark);
+}
+
+.cursor.pink i {
+    color: var(--secondary-color);
+}

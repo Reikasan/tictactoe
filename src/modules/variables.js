@@ -3,7 +3,10 @@ export const cursor = document.querySelector('.cursor');
 export const normalCursor = cursor.querySelector('.cursor--normal');
 export const pointerCursor = cursor.querySelector('.cursor--pointer');
 export const hoverEffectElements = document.querySelectorAll('.pointer');
-
+export let msPos = {
+    x: document.documentElement.clientWidth / 2,
+    y: document.documentElement.clientHeight / 2
+};
 // Settings
 export const startScreen = document.querySelector('.screen--start');
 export const opponentBtns = startScreen.querySelectorAll('.opponent-btn');
@@ -22,6 +25,7 @@ export let settings = {
 export let games = {
     turnCount: 0,
     gameBoard: [null, null, null, null, null, null, null, null, null],
+    history: [],
     winner: '',
     winningComb: []
 };
@@ -40,6 +44,9 @@ export const winningCombos = [
                 [0, 3, 6], [1, 4, 7], [2, 5, 8], 
                 [0, 4, 8], [2, 4, 6]
             ];
+
+// Result
+export const resultScreen = document.querySelector('.screen--result');
 
 // Helper
 export const title = document.querySelector('.title');
