@@ -7,6 +7,7 @@ export let msPos = {
     x: document.documentElement.clientWidth / 2,
     y: document.documentElement.clientHeight / 2
 };
+
 // Settings
 export const startScreen = document.querySelector('.screen--start');
 export const opponentBtns = startScreen.querySelectorAll('.opponent-btn');
@@ -53,3 +54,7 @@ export const resultMessage = resultScreen.querySelector('.result__message');
 
 // Helper
 export const title = document.querySelector('.title');
+export const iconX = 'fa-xmark';
+export const iconO = 'fa-o';
+export const iconPerson = 'fa-person';
+export const iconComputer = 'fa-computer';

@@ -1,4 +1,4 @@
-import { title } from './variables.js';
+import { title, iconX, iconO, iconPerson, iconComputer } from './variables.js';
 
 function moveLeft(item) {
     item.classList.add('move-left');
@@ -23,14 +23,26 @@ function hide(item) {
 
 function addSelectedIconToElement(element, icon) {
     if(icon === 'x') {
-        element.classList.add('fa-xmark');
+        removeIconClass(element, iconO);
+        addSelectedIcon(element, iconX);
     } else if(icon === 'o') {
-        element.classList.add('fa-o');
+        removeIconClass(element, iconX);
+        addSelectedIcon(element, iconO);
     } else if(icon === 'manual') {
-        element.classList.add('fa-person');
+        removeIconClass(element, iconComputer);
+        addSelectedIcon(element, iconPerson);
     } else if(icon === 'auto') {
-        element.classList.add('fa-computer');
+        removeIconClass(element, iconPerson);
+        addSelectedIcon(element, iconComputer);
     }
+}
+
+function addSelectedIcon(element, iconClass) {
+    element.classList.add(iconClass);
+}
+
+function removeIconClass(element, iconClass) {
+    element.classList.remove(iconClass);
 }
 
 function getOpponentSymbol(selectedSymbol) {
