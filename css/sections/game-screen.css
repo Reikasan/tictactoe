@@ -1,6 +1,7 @@
 .screen--game {
     display: block;
     width: 100%;
+    min-height: 100vh;
     top: 0;
     left: 0;
     z-index: 800;
@@ -8,7 +9,7 @@
 
 .game-status {
     height: 100px;
-    margin: 50px 0;
+    margin: 50px 0 20px;
     text-align: center;
 }
 
@@ -30,9 +31,8 @@
     margin: 50px 0;
     width: 100vw;
     position: absolute;
-    top: 50%;
-    transform: translateY(-100%);
-    z-index: -10;
+    bottom: 100px;
+    z-index: 700;
 }
 
 .player-sign .sign {
@@ -64,10 +64,20 @@
     height: unset;
 }
 
-.reset-btn-container {
+.screen__footer {
+    width: 100vw;
+    height: 200px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 50px 0 100px;
+    justify-content: center;
+    background-color: var(--main-color);
+    position: absolute;
+    bottom: 0;
+}
+
+.reset-btn-container {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
 }
 

@@ -23,12 +23,15 @@
     0% {
         width: 5rem;
         border-radius: 50%;
+        padding-left: 1rem;
     } 50% {
         border-radius: 2rem 0 0 2rem;
+        padding-left: 1rem;
     }
     100% {
         width: unset;
         border-radius: 2rem 0 0 2rem;
+        padding-left: 2rem;
     }
 }
 
