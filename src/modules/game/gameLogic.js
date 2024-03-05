@@ -1,6 +1,6 @@
 import { show, getCurrentPlayer } from './../helpers.js';
 import { cells, games, gameStatusError, settings, winningCombos } from './../variables.js';
-import { toggleDisableBtn, showSelectedIconOnCell, showResult, showCurrentPlayer } from './gameUI.js';
+import { toggleDisableBtn, showSelectedIconOnCell, showResult, showCurrentPlayer, renderGameBoard } from './gameUI.js';
 import { saveGameHistory, addPlayerMoveToBoardArray, declareWinner } from './gameState.js';
 
 export function playGame(cell) {
@@ -8,7 +8,6 @@ export function playGame(cell) {
     if(games.turnCount >= 9 || games.winner !== '') {
         return;
     }
-    
     const symbol = getCurrentPlayer() === 'user' ? settings.selectedSymbol 
                                                 : settings.opponentSymbol;
     userPlay(cell.dataset.index, symbol, cellIconElement);
@@ -35,8 +34,8 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
     }
 
     changePlayer();
+    saveGameHistory();
     toggleDisableBtn();
-    saveGameHistory(cellIndex, symbol);
 
     // If opponent is auto, call autoPlay function
     if(settings.opponent === 'auto' ) {
@@ -69,8 +68,8 @@ export async function autoPlay() {
 
     // Change player to user
     changePlayer();
+    saveGameHistory();
     toggleDisableBtn();
-    saveGameHistory(cellIndex, settings.opponentSymbol);
     
     return true;
 }
@@ -115,16 +114,14 @@ function computeNextMoveIndex(turnCount) {
             if(index === null) {
                 return indexForAttackMove() !== null ? indexForAttackMove() : getRandomEmptyCellIndex();
             }
-            return index;
-
         } else {
             index = indexForAttackMove();
 
             if(index === null) {
                 return indexForDefenceMove() !== null ? indexForDefenceMove() : getRandomEmptyCellIndex();
             }
-            return index;
         }  
+        return index;
     }
 }
 
@@ -182,4 +179,27 @@ function removeEventListenerFromCells() {
     cells.forEach((cell) => {
         cell.removeEventListener('click', playGame);
     });
+}
+
+export function stepBack(player) {
+    if(games.steps === 0 || player === 'opponent' && settings.opponent === 'auto' || games.winner !== '') {
+        return;
+    }
+
+    if(player === 'user' && games.turnCount === 1) {
+        removeMove(1);
+    } else if(player === 'user' && settings.opponent === 'auto') {
+        removeMove(2);
+    } else {
+        removeMove(1);
+    }
+    renderGameBoard();
+    toggleDisableBtn();
+    showCurrentPlayer();
+}
+
+function removeMove(steps) {
+    games.gameBoard = JSON.parse(JSON.stringify(games.history[games.turnCount - steps]));
+    games.history = games.history.slice(0, games.history.length - steps);
+    games.turnCount -= steps;
 }

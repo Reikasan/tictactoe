@@ -46,12 +46,6 @@ function transitionScreen() {
     setTimeout(() => hide(startScreen), 2800);
 }
 
-export function stepBack(player) {
-    games.gameBoard = games.history[games.steps - 1];
-    renderGameBoard(games.gameBoard);
-    console.log(games.history);
-}
-
 export function switchOpponent() {
     settings.opponent = settings.opponent === 'auto' ? 'manual' : 'auto';
     addSelectedIconToElement(switchOpponentBtnIcon, settings.opponent, 'opponent');
@@ -63,7 +57,7 @@ export function switchOpponent() {
 
 export function resetAll() {
     resetAllData();
-    renderGameBoard(games.gameBoard);
+    renderGameBoard();
     toggleDisableBtn();
     showCurrentPlayer();
     showStartScreen();
@@ -71,7 +65,7 @@ export function resetAll() {
 
 export function restart() {
     resetGameData();
-    renderGameBoard(games.gameBoard);
+    renderGameBoard();
     toggleDisableBtn();
     showCurrentPlayer();
     showGameScreen();

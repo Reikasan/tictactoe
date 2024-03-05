@@ -26,7 +26,9 @@ export let settings = {
 export let games = {
     turnCount: 0,
     gameBoard: [null, null, null, null, null, null, null, null, null],
-    history: [],
+    history: [
+        [null, null, null, null, null, null, null, null, null],
+    ],
     winner: '',
     winningComb: []
 };

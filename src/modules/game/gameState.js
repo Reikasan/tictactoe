@@ -8,10 +8,9 @@ export function declareWinner() {
     games.winner = games.turnCount % 2 === 0 ? 'user' : 'opponent';
 }
 
-export function saveGameHistory(cellIndex, symbol) {
+export function saveGameHistory() {
     let copy = JSON.parse(JSON.stringify(games.gameBoard));
     games.history.push(copy);
-    console.log(games.history);
 }
 
 export function resetAllData() {
@@ -20,7 +19,9 @@ export function resetAllData() {
     settings.opponentSymbol = '';
     games.turnCount = 0;
     games.gameBoard = [null, null, null, null, null, null, null, null, null];
-    games.history = [];
+    games.history = [
+        [null, null, null, null, null, null, null, null, null],
+    ];
     games.winner = '';
     games.winningComb = [];
 }
@@ -28,7 +29,9 @@ export function resetAllData() {
 export function resetGameData() {
     games.turnCount = 0;
     games.gameBoard = [null, null, null, null, null, null, null, null, null];
-    games.history = [];
+    games.history = [
+        [null, null, null, null, null, null, null, null, null],
+    ];
     games.winner = '';
     games.winningComb = [];
 }
