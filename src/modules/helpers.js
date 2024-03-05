@@ -1,4 +1,4 @@
-import { title } from './variables.js';
+import { title, games, gameStatusText } from './variables.js';
 
 export function moveLeft(item) {
     item.classList.add('move-left');
@@ -23,4 +23,13 @@ export function hide(item) {
 
 export function getOpponentSymbol(selectedSymbol) {
     return selectedSymbol === 'x' ? 'o' : 'x';
+}
+
+export function changeGameStatusText(player) {
+    const text = player === 'user' ? 'Your turn' : 'Opponent\'s turn';
+    gameStatusText.textContent = text;
+}
+
+export function getCurrentPlayer() {
+    return games.turnCount % 2 === 0 ? 'user' : 'opponent';
 }

@@ -1,41 +1,63 @@
-import { checkPlayer } from '../settings.js';
-import { hide, show, coverScreen } from './../helpers.js';
-import { startScreen, gameScreen, resultScreen, title, selectOpponentSection, resultMessage, resultText, cells, games, gameStatusError, iconX, iconO, iconPerson, iconComputer, startGameText } from './../variables.js';
+import { hide, show, coverScreen, getCurrentPlayer, changeGameStatusText } from './../helpers.js';
+import { startScreen, gameScreen, resultScreen, title, selectOpponentSection, 
+        resultMessage, resultText, cells, games, gameStatusError, iconX, iconO, 
+        iconPerson, iconComputer, startGameText , userSymbolSign, opponentSymbolSign, stepBackBtnUser, stepBackBtnOpponent} from './../variables.js';
 
-export function addSelectedIconToElement(element, icon) {
-    if(icon === 'x') {
-        removeIconClass(element, iconO);
-        addSelectedIcon(element, iconX);
-    } else if(icon === 'o') {
-        removeIconClass(element, iconX);
-        addSelectedIcon(element, iconO);
-    } else if(icon === 'manual') {
-        removeIconClass(element, iconComputer);
-        addSelectedIcon(element, iconPerson);
-    } else if(icon === 'auto') {
-        removeIconClass(element, iconPerson);
-        addSelectedIcon(element, iconComputer);
-    } else if(icon === 'null') {
-        removeIconClass(element, iconX);
-        removeIconClass(element, iconO);
+export function addSelectedIconToElement(element, icon, type) {
+    let iconToAdd;
+    let iconToRemove;
+
+    if(type === 'symbol') {
+        if(icon === 'null') {
+            element.classList.remove(iconX, iconO);
+            return;
+        }
+        iconToAdd = icon === 'x' ? iconX : iconO;
+        iconToRemove = icon === 'x' ? iconO : iconX;
+    } else if(type === 'opponent') {
+        iconToAdd = icon === 'manual' ? iconPerson : iconComputer;
+        iconToRemove = icon === 'manual' ? iconComputer : iconPerson;
+    }
+    element.classList.remove(iconToRemove);
+    element.classList.add(iconToAdd);
+}
+
+
+export function selectCurrentPlyerSign(currentPlayer) {
+    if(currentPlayer === 'user') {
+        userSymbolSign.classList.add('selected');
+        opponentSymbolSign.classList.remove('selected');
+    } else {
+        userSymbolSign.classList.remove('selected');
+        opponentSymbolSign.classList.add('selected');
     }
 }
 
-function addSelectedIcon(element, iconClass) {
-    element.classList.add(iconClass);
-}
-
-function removeIconClass(element, iconClass) {
-    element.classList.remove(iconClass);
+export function showCurrentPlayer() {
+    const currentPlayer = getCurrentPlayer();
+    selectCurrentPlyerSign(currentPlayer);
+    changeGameStatusText(currentPlayer);
 }
 
 export function showSelectedIconOnCell(cellIconElement, symbol) {
-    addSelectedIconToElement(cellIconElement, symbol);
+    addSelectedIconToElement(cellIconElement, symbol, 'symbol');
     hide(gameStatusError);
 }
 
-export function removeDisabled(element) {
-    element.classList.remove('disabled');
+export function toggleDisableBtn() {
+    if(games.turnCount) { return };
+
+    if(getCurrentPlayer() === 'user') {
+        stepBackBtnUser.classList.remove('disabled');
+        stepBackBtnOpponent.classList.add('disabled');
+    } else if(getCurrentPlayer() === 'opponent') {
+        if(games.opponent === 'auto') {
+            stepBackBtnOpponent.classList.add('disabled');
+        } else {
+            stepBackBtnOpponent.classList.remove('disabled');
+        }
+        stepBackBtnUser.classList.add('disabled');
+    }
 }
 
 export function showResult(winner) {
@@ -52,8 +74,7 @@ export function showResult(winner) {
     if(winner !== 'draw') {
         highlightWinningCombination();
     }
-    showResultScreen();
-    
+    showResultScreen(); 
 }
 
 function highlightWinningCombination() {
@@ -83,7 +104,7 @@ export function showStartScreen() {
 }
 
 export function showGameScreen() {
-    checkPlayer(games.turnCount);
+    // checkPlayer(games.turnCount);
     show(gameScreen);
     hide(startScreen);
     hide(title);
@@ -91,13 +112,12 @@ export function showGameScreen() {
     resultScreen.classList.remove('expand');
 }
 
-export function renderGameBoard() {
+export function renderGameBoard(gameBoard) {
     for (let i = 0; i < cells.length; i++) {
         const cell = cells[i];
         const cellIconElement = cell.querySelector('i');
         cell.classList.remove('board__cell--winning');
         cellIconElement.classList.remove(iconX, iconO);
-
-        console.log(games.gameBoard);
+        gameBoard[i] !== null ?? addSelectedIconToElement(cellIconElement, gameBoard[i], 'symbol');
     }
 }

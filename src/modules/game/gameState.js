@@ -9,9 +9,8 @@ export function declareWinner() {
 }
 
 export function saveGameHistory(cellIndex, symbol) {
-    games.history.push([cellIndex, symbol]);
-    // let copy = JSON.parse(JSON.stringify(games.gameBoard));
-    // games.history.push(copy);
+    let copy = JSON.parse(JSON.stringify(games.gameBoard));
+    games.history.push(copy);
     console.log(games.history);
 }
 

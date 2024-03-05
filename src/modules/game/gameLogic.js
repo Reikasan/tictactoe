@@ -1,8 +1,7 @@
-import { show } from './../helpers.js';
-import { cells, games, gameStatusError, switchOpponentBtnIcon, settings, winningCombos, stepBackBtn } from './../variables.js';
-import { checkPlayer } from './../settings.js';
-import { addSelectedIconToElement, removeDisabled, showSelectedIconOnCell, showResult, showStartScreen, showGameScreen, renderGameBoard } from './gameUI.js';
-import { saveGameHistory, addPlayerMoveToBoardArray, declareWinner, resetAllData, resetGameData } from './gameState.js';
+import { show, getCurrentPlayer } from './../helpers.js';
+import { cells, games, gameStatusError, settings, winningCombos } from './../variables.js';
+import { toggleDisableBtn, showSelectedIconOnCell, showResult, showCurrentPlayer } from './gameUI.js';
+import { saveGameHistory, addPlayerMoveToBoardArray, declareWinner } from './gameState.js';
 
 export function playGame(cell) {
     const cellIconElement = cell.querySelector('i');
@@ -10,18 +9,9 @@ export function playGame(cell) {
         return;
     }
     
-    // User's turn
-    if(games.turnCount % 2 === 0) {
-        if(!userPlay(cell.dataset.index, settings.selectedSymbol, cellIconElement)) {
-            return;
-        }
-        
-    // Opponent's turn
-    } else {
-        if(!userPlay(cell.dataset.index, settings.opponentSymbol, cellIconElement)) {
-            return;
-        }
-    }
+    const symbol = getCurrentPlayer() === 'user' ? settings.selectedSymbol 
+                                                : settings.opponentSymbol;
+    userPlay(cell.dataset.index, symbol, cellIconElement);
 }
 
 async function userPlay(cellIndex, symbol, cellIconElement) {
@@ -29,9 +19,7 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
         return false;
     }
     saveGameHistory(cellIndex, symbol);
-    if(games.turnCount === 0) {
-        removeDisabled(stepBackBtn);
-    }
+    toggleDisableBtn();
 
     if(games.turnCount >= 4) {
         if(await checkWinner()) {
@@ -48,12 +36,11 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
         return false;
     }
 
-    games.turnCount += 1;
-    checkPlayer(games.turnCount);
+    changePlayer();
 
     // If opponent is auto, call autoPlay function
     if(settings.opponent === 'auto' ) {
-        const result = setTimeout(autoPlay, 1000);
+        const result = setTimeout(autoPlay, 1500);
         if(!result) {
             return false;
         }
@@ -61,22 +48,7 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
     return true;
 }
 
-function addMoveToBoard(cellIndex, symbol, cellIconElement) {
-    if(isPlayerSelectedEmptyCell(cellIndex)) {
-        addPlayerMoveToBoardArray(cellIndex, symbol);
-        showSelectedIconOnCell(cellIconElement, symbol);
-        return true;
-    } else {
-        show(gameStatusError);
-        return false;
-    }
-}
-
-function isPlayerSelectedEmptyCell(cellIndex) {
-    return games.gameBoard[cellIndex] === null;
-}
-
-async function autoPlay() {
+export async function autoPlay() {
     if(games.winner !== '') {
         return;
     }
@@ -96,9 +68,24 @@ async function autoPlay() {
         }
     }
 
-    games.turnCount += 1;
-    checkPlayer(games.turnCount);
+    // Change player to user
+    changePlayer();
     return true;
+}
+
+function addMoveToBoard(cellIndex, symbol, cellIconElement) {
+    if(isPlayerSelectedEmptyCell(cellIndex)) {
+        addPlayerMoveToBoardArray(cellIndex, symbol);
+        showSelectedIconOnCell(cellIconElement, symbol);
+        return true;
+    } else {
+        show(gameStatusError);
+        return false;
+    }
+}
+
+function isPlayerSelectedEmptyCell(cellIndex) {
+    return games.gameBoard[cellIndex] === null;
 }
 
 function isNextMoveDefence() {
@@ -172,6 +159,11 @@ function checkForWinningMove(symbol) {
     return index[key];
 }
 
+function changePlayer() {
+    games.turnCount += 1;
+    showCurrentPlayer();
+}
+
 function checkWinner() {
     games.winningComb = winningCombos.find((combo) => {
         const [a, b, c] = combo;
@@ -188,32 +180,4 @@ function removeEventListenerFromCells() {
     cells.forEach((cell) => {
         cell.removeEventListener('click', playGame);
     });
-}
-
-// export function stepBack() {
-//     console.log('clicked back-btn');
-//     games.gameBoard = games.history[games.steps - 1];
-//     renderGameBoard();
-//     console.log(games.gameBoard);
-// }
-
-export function switchOpponent() {
-    settings.opponent = settings.opponent === 'auto' ? 'manual' : 'auto';
-    addSelectedIconToElement(switchOpponentBtnIcon, settings.opponent);
-
-    if(settings.opponent === 'auto' && games.turnCount % 2 !== 0) {
-        autoPlay();
-    }
-}
-
-export function resetAll() {
-    resetAllData();
-    renderGameBoard();
-    showStartScreen();
-}
-
-export function restart() {
-    resetGameData();
-    renderGameBoard();
-    showGameScreen();
 }

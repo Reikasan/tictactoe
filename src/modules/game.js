@@ -1,6 +1,6 @@
 import { opponentBtns, symbolBtns, backToOpponentBtn, cells, switchOpponentBtn, allResetBtns, gameResetBtns, stepBackBtns } from './variables.js';
-import { selectAndShowNextQuestion } from './game/gameSetting.js';
-import { playGame, stepBack, resetAll, restart, switchOpponent } from './game/gameLogic.js';
+import { selectAndShowNextQuestion, stepBack, resetAll, restart, switchOpponent } from './game/gameSetting.js';
+import { playGame } from './game/gameLogic.js';
 
 // Event listeners for start screen
 opponentBtns.forEach(btn => {

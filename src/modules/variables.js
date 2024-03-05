@@ -53,6 +53,8 @@ export const resultMessage = resultScreen.querySelector('.result__message');
 
 // Buttons
 export const stepBackBtns = document.querySelectorAll('.back-btn--step');
+export const stepBackBtnUser = document.querySelector('.back-btn--step[data-player="user"]');
+export const stepBackBtnOpponent = document.querySelector('.back-btn--step[data-player="opponent"]');
 export const allResetBtns = document.querySelectorAll('.reset-btn--all');
 export const gameResetBtns = document.querySelectorAll('.reset-btn--game');
 
