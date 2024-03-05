@@ -3,12 +3,18 @@ import { startScreen, gameScreen, resultScreen, title, selectOpponentSection,
         resultMessage, resultText, cells, settings, games, gameStatusError, iconX, iconO, 
         iconPerson, iconComputer, startGameText , userSymbolSign, opponentSymbolSign, stepBackBtnUser, stepBackBtnOpponent} from './../variables.js';
 
+export function backToOpponentSection(e) {
+    e.preventDefault();
+    hide(selectSymbolSection);
+    show(selectOpponentSection);
+}
+
 export function addSelectedIconToElement(element, icon, type) {
     let iconToAdd;
     let iconToRemove;
 
     if(type === 'symbol') {
-        if(icon === 'null') {
+        if(icon === null) {
             element.classList.remove(iconX, iconO);
             return;
         }
@@ -56,7 +62,6 @@ export function toggleDisableBtn() {
         stepBackBtnOpponent.classList.add('disabled');
     } else if(getCurrentPlayer() === 'user') {
         if(settings.opponent === 'auto') {
-            console.log('auto');
             // If opponent is auto, user can use step back but opponent stay disabled
             stepBackBtnOpponent.classList.add('disabled');
             stepBackBtnUser.classList.remove('disabled');
@@ -119,12 +124,11 @@ export function showGameScreen() {
     resultScreen.classList.remove('expand');
 }
 
-export function renderGameBoard(gameBoard) {
+export function renderGameBoard() {
     for (let i = 0; i < cells.length; i++) {
         const cell = cells[i];
         const cellIconElement = cell.querySelector('i');
         cell.classList.remove('board__cell--winning');
-        cellIconElement.classList.remove(iconX, iconO);
-        gameBoard[i] !== null ?? addSelectedIconToElement(cellIconElement, gameBoard[i], 'symbol');
+        addSelectedIconToElement(cellIconElement, games.gameBoard[i], 'symbol');
     }
 }
