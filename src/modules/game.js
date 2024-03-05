@@ -1,5 +1,5 @@
-import { opponentBtns, symbolBtns, backToOpponentBtn, cells, switchOpponentBtn, allResetBtns, gameResetBtns, stepBackBtn } from './variables.js';
-import { selectAndShowNextQuestion } from './settings.js';
+import { opponentBtns, symbolBtns, backToOpponentBtn, cells, switchOpponentBtn, allResetBtns, gameResetBtns, stepBackBtns } from './variables.js';
+import { selectAndShowNextQuestion } from './game/gameSetting.js';
 import { playGame, stepBack, resetAll, restart, switchOpponent } from './game/gameLogic.js';
 
 // Event listeners for start screen
@@ -22,7 +22,9 @@ cells.forEach((cell) => {
     cell.addEventListener('click', () => playGame(cell));
 });
 
-// stepBackBtn.addEventListener('click', () => stepBack());
+stepBackBtns.forEach((btn) => {
+    btn.addEventListener('click', () => stepBack(btn.dataset.player));
+});
 
 switchOpponentBtn.addEventListener('click', switchOpponent);
 

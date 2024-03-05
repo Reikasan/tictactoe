@@ -63,13 +63,14 @@
             </div>
             <div class="opponent">
                 <button class="btn--square switch-opponent-btn pointer" >
-                    <i class="fa-solid"></i><span>Switch Opponent</span>
+                    <i class="fa-solid"></i><span>Switch</span>
                 </button>
             </div>
-            <div class="player-sign">
+            <div class="player-fields">
                 <div class="sign sign--user">
                     <p>You</p>
                     <i class="fa-solid"></i>
+     
                 </div>
                 <div class="sign sign--opponent">
                     <i class="fa-solid"></i>
@@ -77,11 +78,14 @@
                 </div>
             </div>
             <div class="screen__footer">
-                <div class="reset-btn-container">
-                    <button class="btn back-btn--step pointer disabled">
+                <div class="btn-container">
+                    <button class="btn back-btn--step pointer disabled" data-player="user">
                         <i class="fa-solid fa-rotate-left"></i>
                     </button>
                     <button class="btn reset-btn--game pointer">Reset?</button>
+                    <button class="btn back-btn--step pointer disabled" data-player="opponent">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
                 </div>
             </div>
         </div>

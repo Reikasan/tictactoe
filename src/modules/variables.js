@@ -52,6 +52,7 @@ export const resultText = resultScreen.querySelector('.result__text');
 export const resultMessage = resultScreen.querySelector('.result__message');
 
 // Buttons
+export const stepBackBtns = document.querySelectorAll('.back-btn--step');
 export const allResetBtns = document.querySelectorAll('.reset-btn--all');
 export const gameResetBtns = document.querySelectorAll('.reset-btn--game');
 

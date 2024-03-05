@@ -26,6 +26,16 @@ button {
     transform: scale(1.1);
 }
 
+.btn.disabled, .btn.disabled i {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+
+.btn.disabled:hover {
+    transform: none;
+}
+
 .btn--square {
     display: flex;
     flex-direction: column;
@@ -63,19 +73,19 @@ button {
     text-decoration: underline;
 }
 
-.back-btn--opponent i {
+.screen--start .back-btn--opponent i {
     font-size: 1.2rem;
     color: var(--bg-color);
     margin-top: 5px;
 }
 
-.back-btn--game {
+.back-btn--step {
     width: 67px;
     height: 67px;
     padding: 0 1rem;
 }
 
-.back-btn--game i {
+.back-btn--step i {
     color: var(--main-color);
     font-size: 2rem;
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);;
@@ -87,7 +97,7 @@ button {
     padding: 0 1rem;
     border-radius: 50%;
     position: absolute;
-    bottom: 250px;
+    bottom: 240px;
     right: -10px;
     color: var(--dark-text);
     border: solid 2px var(--main-color);
