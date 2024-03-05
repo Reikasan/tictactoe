@@ -18,9 +18,7 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
     if(!addMoveToBoard(cellIndex, symbol, cellIconElement)) {
         return false;
     }
-    saveGameHistory(cellIndex, symbol);
-    toggleDisableBtn();
-
+    
     if(games.turnCount >= 4) {
         if(await checkWinner()) {
             declareWinner();
@@ -37,6 +35,8 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
     }
 
     changePlayer();
+    toggleDisableBtn();
+    saveGameHistory(cellIndex, symbol);
 
     // If opponent is auto, call autoPlay function
     if(settings.opponent === 'auto' ) {
@@ -57,7 +57,6 @@ export async function autoPlay() {
     const cellIconElement = cells[cellIndex].querySelector('i');
 
     addMoveToBoard(cellIndex, settings.opponentSymbol, cellIconElement);
-    saveGameHistory(cellIndex, settings.opponentSymbol);
 
     if(games.turnCount >= 4) {
         if(await checkWinner()) {
@@ -70,6 +69,9 @@ export async function autoPlay() {
 
     // Change player to user
     changePlayer();
+    toggleDisableBtn();
+    saveGameHistory(cellIndex, settings.opponentSymbol);
+    
     return true;
 }
 

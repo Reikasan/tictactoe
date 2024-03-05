@@ -1,6 +1,6 @@
-import { hide, show, moveLeft, coverScreen, moveDown, getOpponentSymbol, getCurrentPlayer } from '../helpers.js';
+import { hide, show, moveLeft, coverScreen, moveDown, getOpponentSymbol } from '../helpers.js';
 import { settings, userSymbolSignIcon, opponentSymbolSignIcon, startScreen, gameScreen, switchOpponentBtnIcon, startGameText, selectOpponentSection, selectSymbolSection, games } from '../variables.js';
-import { addSelectedIconToElement, showCurrentPlayer, renderGameBoard, showStartScreen, showGameScreen } from './gameUI.js';
+import { addSelectedIconToElement, showCurrentPlayer, renderGameBoard, showStartScreen, showGameScreen, toggleDisableBtn } from './gameUI.js';
 import { resetAllData, resetGameData } from './gameState.js';
 import { autoPlay } from './gameLogic.js';
 
@@ -64,6 +64,7 @@ export function switchOpponent() {
 export function resetAll() {
     resetAllData();
     renderGameBoard(games.gameBoard);
+    toggleDisableBtn();
     showCurrentPlayer();
     showStartScreen();
 }
@@ -71,6 +72,7 @@ export function resetAll() {
 export function restart() {
     resetGameData();
     renderGameBoard(games.gameBoard);
+    toggleDisableBtn();
     showCurrentPlayer();
     showGameScreen();
 }

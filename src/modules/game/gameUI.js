@@ -1,6 +1,6 @@
 import { hide, show, coverScreen, getCurrentPlayer, changeGameStatusText } from './../helpers.js';
 import { startScreen, gameScreen, resultScreen, title, selectOpponentSection, 
-        resultMessage, resultText, cells, games, gameStatusError, iconX, iconO, 
+        resultMessage, resultText, cells, settings, games, gameStatusError, iconX, iconO, 
         iconPerson, iconComputer, startGameText , userSymbolSign, opponentSymbolSign, stepBackBtnUser, stepBackBtnOpponent} from './../variables.js';
 
 export function addSelectedIconToElement(element, icon, type) {
@@ -45,18 +45,26 @@ export function showSelectedIconOnCell(cellIconElement, symbol) {
 }
 
 export function toggleDisableBtn() {
-    if(games.turnCount) { return };
+    if(games.turnCount == 0 ) { 
+        stepBackBtnUser.classList.add('disabled');
+        stepBackBtnOpponent.classList.add('disabled');
+        return;
+    };
 
-    if(getCurrentPlayer() === 'user') {
+    if(getCurrentPlayer() === 'opponent') {
         stepBackBtnUser.classList.remove('disabled');
         stepBackBtnOpponent.classList.add('disabled');
-    } else if(getCurrentPlayer() === 'opponent') {
-        if(games.opponent === 'auto') {
+    } else if(getCurrentPlayer() === 'user') {
+        if(settings.opponent === 'auto') {
+            console.log('auto');
+            // If opponent is auto, user can use step back but opponent stay disabled
             stepBackBtnOpponent.classList.add('disabled');
+            stepBackBtnUser.classList.remove('disabled');
         } else {
+            console.log('manual');
             stepBackBtnOpponent.classList.remove('disabled');
+            stepBackBtnUser.classList.add('disabled');
         }
-        stepBackBtnUser.classList.add('disabled');
     }
 }
 
@@ -104,7 +112,6 @@ export function showStartScreen() {
 }
 
 export function showGameScreen() {
-    // checkPlayer(games.turnCount);
     show(gameScreen);
     hide(startScreen);
     hide(title);
