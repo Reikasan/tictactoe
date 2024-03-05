@@ -64,11 +64,13 @@ export function switchOpponent() {
 export function resetAll() {
     resetAllData();
     renderGameBoard(games.gameBoard);
+    showCurrentPlayer();
     showStartScreen();
 }
 
 export function restart() {
     resetGameData();
     renderGameBoard(games.gameBoard);
+    showCurrentPlayer();
     showGameScreen();
 }
