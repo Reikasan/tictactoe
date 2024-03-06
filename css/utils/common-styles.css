@@ -19,7 +19,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: var(--container-width);
     margin: 0 auto;
     color: var(--dark-text);
     padding: 50px 0;
@@ -46,9 +46,8 @@ h2 {
 }
 
 .title {
-    position: absolute;
-    top: 50px;
-    z-index: 800;
+    letter-spacing: -7px;
+    font-size: 7rem;
 }
 
 .screen {

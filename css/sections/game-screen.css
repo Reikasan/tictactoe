@@ -13,15 +13,9 @@
     text-align: center;
 }
 
-.game-status__text {
-    font-family: var(--heading-font);
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--dark-text);
-}
-
 .game-status__text--error {
     color: var(--error-color);
+    font-size: 1rem;
 }
 
 .player-fields {

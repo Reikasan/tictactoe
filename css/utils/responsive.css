@@ -1,0 +1,93 @@
+@media screen and (max-width: 992px){
+    :root {
+        --container-width: 70vw;
+    }
+    .title {
+        font-size: 6rem;
+    }
+    .start-game span {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .title {
+        font-size: 5rem;
+    }
+    .screen--result h1 {
+        font-size: 5rem;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .btn--square {
+        width: 8rem;
+        height: 8rem;
+        font-size: 1.5rem;
+    }
+    .screen--start .btn--square .fa-solid {
+        font-size: 4rem;
+    }
+    .title {
+        text-align: center;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    .board {
+        width: 300px;
+    }
+    .btn--square.switch-opponent-btn {
+        width: 4rem;
+        height: 4rem;
+        bottom: 200px;
+    }
+    .player-fields {
+        bottom: 80px
+    }
+    .player-fields .sign {
+        flex-direction: column;
+        justify-content: center;
+        height: 100px;
+        border-radius: 25px 0 0 25px;
+
+    }
+    .player-fields .sign:first-of-type {
+        flex-direction: column-reverse;
+        border-radius: 0 25px 25px 0;
+
+    }
+    .screen__footer {
+        height: 150px
+    }
+    .screen__footer .btn-container {
+        height: 150px;
+    }
+    .screen--result h1 {
+        font-size: 4rem;
+    }
+    p.result__message {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px){
+    h2 {
+        font-size: 2rem;
+    }
+    .title {
+        font-size: 3.5rem;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .btn--square {
+        width: 6rem;
+        height: 6rem;
+        font-size: 1.5rem;
+    }
+    .screen--start .btn--square .fa-solid {
+        font-size: 2.5rem;
+    }
+    
+}

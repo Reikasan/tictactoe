@@ -38,21 +38,15 @@
     -webkit-text-stroke: 3px var(--bg-color);
 }
 
-.screen--start form {
-    max-width: 800px;
+.screen--start .start-form {
+    max-width: var(--container-width);
     height: 300px;
     margin: 50px auto;
-}
-
-.screen--start .fa-solid {
-    color: var(--primary-color);
-    font-size: 5rem;
-    height: auto;
 }
 
 .row {
     display: flex;
     justify-content: space-between;
     margin: 2rem auto;
-    width: 500px;
+    max-width: 500px;
 }

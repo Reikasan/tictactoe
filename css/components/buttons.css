@@ -58,13 +58,18 @@ button {
     box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
 }
 
+.screen--start .btn--square .fa-solid {
+    color: var(--primary-color);
+    font-size: 5rem;
+    height: auto;
+} 
+
 .btn:active {
     transform: translateY(2px);
 }
 
 .back-btn--opponent {
     font-size: 1.2rem;
-    width: 500px;
     margin: 0 auto;
     background-color: transparent;
     border: none;
@@ -91,7 +96,7 @@ button {
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);;
 } 
 
-.switch-opponent-btn {
+.btn--square.switch-opponent-btn {
     width: 5rem;
     height: 5rem;
     padding: 0 1rem;
@@ -104,7 +109,7 @@ button {
     z-index: 800;
 }
 
-.switch-opponent-btn i, .switch-opponent-btn span {
+.btn--square.switch-opponent-btn i, .switch-opponent-btn span {
     color: var(--main-color);
 }
 
