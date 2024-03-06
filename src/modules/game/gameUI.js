@@ -1,10 +1,10 @@
 import { hide, show, coverScreen, getCurrentPlayer, changeGameStatusText } from './../helpers.js';
 import { startScreen, gameScreen, resultScreen, title, selectOpponentSection, 
         resultMessage, resultText, cells, settings, games, gameStatusError, iconX, iconO, 
-        iconPerson, iconComputer, startGameText , userSymbolSign, opponentSymbolSign, stepBackBtnUser, stepBackBtnOpponent} from './../variables.js';
+        iconPerson, iconComputer, startGameText , userSymbolSign, opponentSymbolSign, 
+        stepBackBtnUser, stepBackBtnOpponent, selectSymbolSection} from './../variables.js';
 
-export function backToOpponentSection(e) {
-    e.preventDefault();
+export function backToOpponentSection() {
     hide(selectSymbolSection);
     show(selectOpponentSection);
 }

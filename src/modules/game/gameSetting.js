@@ -4,9 +4,7 @@ import { addSelectedIconToElement, showCurrentPlayer, renderGameBoard, showStart
 import { resetAllData, resetGameData } from './gameState.js';
 import { autoPlay } from './gameLogic.js';
 
-export function selectAndShowNextQuestion(e, item, btn) {
-    e.preventDefault();
-    
+export function selectAndShowNextQuestion(item, btn) {
     // First question
     if(item === 'opponent') {
         settings.opponent = btn.dataset.opponent;

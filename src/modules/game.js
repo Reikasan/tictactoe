@@ -5,14 +5,14 @@ import { backToOpponentSection } from './game/gameUI.js';
 
 // Event listeners for start screen
 opponentBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => selectAndShowNextQuestion(e, 'opponent', btn));
+    btn.addEventListener('click', () => selectAndShowNextQuestion('opponent', btn));
 });
 
 symbolBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => selectAndShowNextQuestion(e, 'symbol', btn));
+    btn.addEventListener('click', () => selectAndShowNextQuestion('symbol', btn));
 });
 
-backToOpponentBtn.addEventListener('click', (e) => backToOpponentSection(e)); 
+backToOpponentBtn.addEventListener('click', () => backToOpponentSection()); 
 
 // Event listener for game screen
 cells.forEach((cell) => {
