@@ -111,6 +111,7 @@ button {
 
 .btn--square.switch-opponent-btn i, .switch-opponent-btn span {
     color: var(--main-color);
+    height: unset;
 }
 
 .switch-opponent-btn span {
