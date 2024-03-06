@@ -1,3 +1,5 @@
+// Copyright 2024 Reika Akuzawa. All rights reserved.
+
 import { hide, show, coverScreen, getCurrentPlayer, changeGameStatusText } from './../helpers.js';
 import { startScreen, gameScreen, resultScreen, title, selectOpponentSection, 
         resultMessage, resultText, cells, settings, games, gameStatusError, iconX, iconO, 

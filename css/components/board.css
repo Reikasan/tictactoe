@@ -1,3 +1,5 @@
+/* Copyright 2024 Reika Akuzawa. All rights reserved. */
+
 .board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -1,3 +1,5 @@
+// Copyright 2024 Reika Akuzawa. All rights reserved.
+
 import { title, games, gameStatusText } from './variables.js';
 
 export function moveLeft(item) {

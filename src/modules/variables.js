@@ -1,3 +1,5 @@
+// Copyright 2024 Reika Akuzawa. All rights reserved.
+
 // Cursor
 export const cursor = document.querySelector('.cursor');
 export const normalCursor = cursor.querySelector('.cursor--normal');

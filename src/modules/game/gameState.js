@@ -1,3 +1,5 @@
+// Copyright 2024 Reika Akuzawa. All rights reserved.
+
 import { games, settings } from './../variables.js';
 
 export function addPlayerMoveToBoardArray(cellIndex, symbol) {

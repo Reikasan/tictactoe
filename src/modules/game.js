@@ -1,3 +1,5 @@
+// Copyright 2024 Reika Akuzawa. All rights reserved.
+
 import { opponentBtns, symbolBtns, backToOpponentBtn, cells, switchOpponentBtn, allResetBtns, gameResetBtns, stepBackBtns } from './variables.js';
 import { selectAndShowNextQuestion, resetAll, restart, switchOpponent } from './game/gameSetting.js';
 import { playGame, stepBack } from './game/gameLogic.js';

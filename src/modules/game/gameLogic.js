@@ -1,3 +1,4 @@
+// Copyright 2024 Reika Akuzawa. All rights reserved.
 import { show, getCurrentPlayer, isAutoPlaying, isGameOver } from './../helpers.js';
 import { cells, games, gameStatusError, settings, winningCombos } from './../variables.js';
 import { toggleDisableBtn, showSelectedIconOnCell, showResult, showCurrentPlayer, renderGameBoard } from './gameUI.js';

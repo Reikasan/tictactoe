@@ -1,3 +1,5 @@
+// Copyright 2024 Reika Akuzawa. All rights reserved.
+
 import { hide, show, moveLeft, coverScreen, moveDown, getOpponentSymbol } from '../helpers.js';
 import { settings, userSymbolSignIcon, opponentSymbolSignIcon, startScreen, gameScreen, switchOpponentBtnIcon, startGameText, selectOpponentSection, selectSymbolSection, games } from '../variables.js';
 import { addSelectedIconToElement, showCurrentPlayer, renderGameBoard, showStartScreen, showGameScreen, toggleDisableBtn } from './gameUI.js';

@@ -1,3 +1,5 @@
+// Copyright 2024 Reika Akuzawa. All rights reserved.
+
 import { cursor, normalCursor, pointerCursor, hoverEffectElements, resultScreen, msPos } from './variables.js';
 
 /* EVENT LISTENERS */
