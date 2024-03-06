@@ -33,3 +33,14 @@ export function changeGameStatusText(player) {
 export function getCurrentPlayer() {
     return games.turnCount % 2 === 0 ? 'user' : 'opponent';
 }
+
+export function isAutoPlaying() {
+    return games.isAutoPlaying;
+}
+
+export function isGameOver() {
+    if(games.turnCount >= 9 || games.winner !== ''){
+        return true;
+    } 
+    return false;
+}

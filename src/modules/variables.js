@@ -25,6 +25,7 @@ export let settings = {
 // Game
 export let games = {
     turnCount: 0,
+    isAutoPlaying: false,
     gameBoard: [null, null, null, null, null, null, null, null, null],
     history: [
         [null, null, null, null, null, null, null, null, null],

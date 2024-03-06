@@ -1,13 +1,16 @@
-import { show, getCurrentPlayer } from './../helpers.js';
+import { show, getCurrentPlayer, isAutoPlaying, isGameOver } from './../helpers.js';
 import { cells, games, gameStatusError, settings, winningCombos } from './../variables.js';
 import { toggleDisableBtn, showSelectedIconOnCell, showResult, showCurrentPlayer, renderGameBoard } from './gameUI.js';
 import { saveGameHistory, addPlayerMoveToBoardArray, declareWinner } from './gameState.js';
 
 export function playGame(cell) {
-    const cellIconElement = cell.querySelector('i');
-    if(games.turnCount >= 9 || games.winner !== '') {
+    // Prevent actions during auto playing
+    if(isAutoPlaying() || isGameOver()) {
         return;
     }
+
+    const cellIconElement = cell.querySelector('i');
+    
     const symbol = getCurrentPlayer() === 'user' ? settings.selectedSymbol 
                                                 : settings.opponentSymbol;
     userPlay(cell.dataset.index, symbol, cellIconElement);
@@ -39,6 +42,7 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
 
     // If opponent is auto, call autoPlay function
     if(settings.opponent === 'auto' ) {
+        games.isAutoPlaying = true;
         const result = setTimeout(autoPlay, 1500);
         if(!result) {
             return false;
@@ -48,7 +52,7 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
 }
 
 export async function autoPlay() {
-    if(games.winner !== '') {
+    if(isGameOver()) {
         return;
     }
 
@@ -70,6 +74,7 @@ export async function autoPlay() {
     changePlayer();
     saveGameHistory();
     toggleDisableBtn();
+    games.isAutoPlaying = false;
     
     return true;
 }
@@ -182,6 +187,11 @@ function removeEventListenerFromCells() {
 }
 
 export function stepBack(player) {
+    // Prevent actions during auto playing
+    if(isAutoPlaying()) {
+        return;
+    }
+
     if(games.steps === 0 || player === 'opponent' && settings.opponent === 'auto' || games.winner !== '') {
         return;
     }
