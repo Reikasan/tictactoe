@@ -1,5 +1,7 @@
 # Tic Tac Toe Game
-Play my TicTacToe game!!!
+Play my TicTacToe game!!!<br/>
+👉 https://reikasan.github.io/tictactoe/
+
 ![Screenshot 2024-03-06 at 17 08 56](https://github.com/Reikasan/tictactoe/assets/68085523/24e1aec2-58ec-4794-9606-ad19ec378a1d)
 
 ## Start Page
