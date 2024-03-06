@@ -20,6 +20,12 @@
 }
 
 @media screen and (max-width: 576px){
+    .container {
+        min-height: 500px;
+    }
+    .container:has(.screen--game.show) {
+        min-height: 850px;
+    }
     .btn--square {
         width: 8rem;
         height: 8rem;
@@ -50,7 +56,6 @@
         justify-content: center;
         height: 100px;
         border-radius: 25px 0 0 25px;
-
     }
     .player-fields .sign:first-of-type {
         flex-direction: column-reverse;
@@ -81,6 +86,9 @@
 }
 
 @media screen and (max-width: 360px){
+    .screen--start {
+        height: 300px;
+    }
     .btn--square {
         width: 6rem;
         height: 6rem;
@@ -89,5 +97,7 @@
     .screen--start .btn--square .fa-solid {
         font-size: 2.5rem;
     }
-    
+    .screen--start .start-form h2.start-game {
+        line-height: 200px;
+    }
 }

@@ -24,6 +24,7 @@ body {
     color: var(--dark-text);
     padding: 50px 0;
     height: 100vh;
+    min-height: 800px;
 }
 
 h1 {

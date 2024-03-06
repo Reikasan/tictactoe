@@ -50,3 +50,20 @@
         height: fit-content;
     }
 }
+
+@keyframes showResult {
+    0% {
+        opacity: 0;
+        height: 0;
+        top: 100vh;
+    }
+    15% {
+        opacity: 1;
+    }
+    
+    100% {
+        height: 100vh;
+        opacity: 1;
+        top: 0;
+    }
+}

@@ -101,8 +101,10 @@ function changeBoardCellColor(cellIndex) {
 }
 
 function showResultScreen() {
+    setTimeout(() => gameScreen.classList.remove('show'), 2500);
     setTimeout(() =>show(resultScreen), 2500);
     setTimeout(() => coverScreen(resultScreen), 2500);
+    setTimeout(() => hide(gameScreen), 2500);
 }
 
 export function showStartScreen() {

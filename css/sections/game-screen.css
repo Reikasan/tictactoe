@@ -1,7 +1,8 @@
 .screen--game {
     display: block;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 800px;
     top: 0;
     left: 0;
     z-index: 800;
