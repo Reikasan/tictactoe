@@ -44,11 +44,6 @@ function transitionScreen() {
     setTimeout(() => show(gameScreen), 1400);
     setTimeout(() => moveDown(startScreen), 1800);
     setTimeout(() => hide(startScreen), 2800);
-    setTimeout(() => {
-        startScreen.classList.remove('expand');
-        startScreen.classList.remove('move-down');
-        gameScreen.classList.add('show');
-    }, 2800);
 }
 
 export function switchOpponent() {

@@ -13,12 +13,12 @@
     top: 15%;
     left: 0%;
     z-index: 900;
-    transition: all 0.5s;
+    transition: all .5s;
 }
 
 .screen--start.expand {
     height: 100vh;
-    min-height: 800px;
+    /* min-height: 800px; */
     top: -25%;
 }
 
