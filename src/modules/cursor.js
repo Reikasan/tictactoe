@@ -4,9 +4,11 @@ import { cursor, normalCursor, pointerCursor, hoverEffectElements, resultScreen,
 
 /* EVENT LISTENERS */
 // mouse stalker activate for non-touch devices
-if (window.matchMedia("(pointer: fine)")) {
-    document.body.addEventListener("mouseover", customCursorActivate);
-}
+document.body.addEventListener('DocumentContentLoaded', () => {
+    if ('ontouchstart' in window === false || window.matchMedia("(pointer: fine)" || window.innerWidth > 800)) {
+        document.body.addEventListener("mouseover", customCursorActivate);
+    } 
+});
   
 // show cursor on mouseenter and hide on mouseleave
 document.body.addEventListener('mouseenter', () => {

@@ -22,11 +22,11 @@
 }
 
 @media screen and (max-width: 576px){
+    .cursor.isActive {
+        display: none;
+    }
     .container {
         min-height: 500px;
-    }
-    .container:has(.screen--game.show) {
-        min-height: 850px;
     }
     .btn--square {
         width: 8rem;
@@ -45,6 +45,15 @@
     .move-left {
         animation: moveLeft .5s forwards ease-in-out;
     }  
+    .screen--game {
+        min-height: 600px
+    }
+    .game-status {
+        height: 30px;
+    }
+    .game-status__text {
+        display: none;
+    }
     .board {
         width: 300px;
     }
