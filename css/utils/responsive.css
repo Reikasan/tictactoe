@@ -36,6 +36,9 @@
     .screen--start .btn--square .fa-solid {
         font-size: 4rem;
     }
+    .screen--start.expand {
+        min-height: 600px;
+    }
     .title {
         text-align: center;
     }
