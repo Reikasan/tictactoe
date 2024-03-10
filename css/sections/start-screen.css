@@ -7,20 +7,16 @@
 .screen--start {
     background-color: var(--secondary-color);
     color: var(--bg-color);
-    transform: translateY(25%);
     width: 100vw;
     height: 400px;
-    top: 15%;
+    top: 25%;
     left: 0%;
     z-index: 900;
     transition: all .6s;
 }
 
 .screen--start.expand {
-    height: 100vh;
-    min-height: 1000px;
-    top: 0;
-    transform: unset;
+    animation: expandStartScreen .6s forwards ease-in-out;
 }
 
 .screen--start.move-down {
