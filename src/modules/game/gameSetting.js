@@ -1,6 +1,6 @@
 // Copyright 2024 Reika Akuzawa. All rights reserved.
 
-import { hide, show, moveLeft, coverScreen, moveDown, getOpponentSymbol } from '../helpers.js';
+import { hide, show, moveLeft, coverScreen, moveDown, getOpponentSymbol, changeTitleZindex } from '../helpers.js';
 import { settings, userSymbolSignIcon, opponentSymbolSignIcon, startScreen, gameScreen, switchOpponentBtnIcon, startGameText, selectOpponentSection, selectSymbolSection, games } from '../variables.js';
 import { addSelectedIconToElement, showCurrentPlayer, renderGameBoard, showStartScreen, showGameScreen, toggleDisableBtn } from './gameUI.js';
 import { resetAllData, resetGameData } from './gameState.js';
@@ -39,6 +39,7 @@ function setIconForPlayerSigns() {
 function transitionScreen() {
     showCurrentPlayer();
     setTimeout(() => moveLeft(startGameText), 500);
+    setTimeout(() => changeTitleZindex(), 500);
     setTimeout(() => coverScreen(startScreen), 1000);
     setTimeout(() => show(gameScreen), 1400);
     setTimeout(() => moveDown(startScreen), 1800);

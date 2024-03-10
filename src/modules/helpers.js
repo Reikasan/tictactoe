@@ -6,6 +6,10 @@ export function moveLeft(item) {
     item.classList.add('move-left');
 }
 
+export function changeTitleZindex() {
+    title.style.zIndex = '0';
+}
+
 export function moveDown(item) {
     item.classList.add('move-down');
     hide(title);

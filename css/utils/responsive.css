@@ -33,6 +33,15 @@
         height: 8rem;
         font-size: 1.5rem;
     }
+    .screen--start {
+        height: 300px;
+    }
+    .screen--start .start-form  {
+       margin: 20px auto;
+    }
+    .screen--start h2.start-game {
+        line-height: 260px;
+    }
     .screen--start .btn--square .fa-solid {
         font-size: 4rem;
     }
@@ -77,7 +86,6 @@
     .player-fields .sign:first-of-type {
         flex-direction: column-reverse;
         border-radius: 0 25px 25px 0;
-
     }
     .screen__footer {
         height: 150px
