@@ -68,7 +68,6 @@ export function toggleDisableBtn() {
             stepBackBtnOpponent.classList.add('disabled');
             stepBackBtnUser.classList.remove('disabled');
         } else {
-            console.log('manual');
             stepBackBtnOpponent.classList.remove('disabled');
             stepBackBtnUser.classList.add('disabled');
         }

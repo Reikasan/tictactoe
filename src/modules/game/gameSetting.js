@@ -13,8 +13,8 @@ export function selectAndShowNextQuestion(item, btn) {
         hide(selectOpponentSection);
         show(selectSymbolSection);
         addSelectedIconToElement(switchOpponentBtnIcon, settings.opponent, 'opponent');
-
-    // Second question
+    
+        // Second question
     } else if(item === 'symbol') {
         settings.selectedSymbol = btn.dataset.symbol;
         
