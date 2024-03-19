@@ -21,7 +21,6 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
     if(!addMoveToBoard(cellIndex, symbol, cellIconElement)) {
         return false;
     }
-    
     if(games.turnCount >= 4) {
         if(await checkWinner()) {
             declareWinner();
@@ -44,7 +43,8 @@ async function userPlay(cellIndex, symbol, cellIconElement) {
     // If opponent is auto, call autoPlay function
     if(settings.opponent === 'auto' ) {
         games.isAutoPlaying = true;
-        const result = setTimeout(autoPlay, 1500);
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        const result = autoPlay();
         if(!result) {
             return false;
         }
@@ -59,7 +59,6 @@ export async function autoPlay() {
 
     let cellIndex = computeNextMoveIndex(games.turnCount);
     const cellIconElement = cells[cellIndex].querySelector('i');
-
     addMoveToBoard(cellIndex, settings.opponentSymbol, cellIconElement);
 
     if(games.turnCount >= 4) {
